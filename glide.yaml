@@ -1,0 +1,12 @@
+package: github.com/rai-project/rai-keygen
+import:
+- package: github.com/GeertJohan/go-sourcepath
+- package: github.com/Sirupsen/logrus
+  version: ~0.11.2
+- package: github.com/Unknwon/com
+  version: ~1.0.0
+- package: github.com/pkg/errors
+  version: ~0.8.0
+- package: github.com/rai-project/email
+- package: github.com/spf13/cobra
+- package: github.com/spf13/viper
