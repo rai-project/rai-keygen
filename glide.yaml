@@ -1,5 +1,7 @@
 package: github.com/rai-project/rai-keygen
 import:
+- package: github.com/BurntSushi/toml
+  version: ~0.2.0
 - package: github.com/GeertJohan/go-sourcepath
 - package: github.com/Sirupsen/logrus
   version: ~0.11.4
@@ -7,6 +9,10 @@ import:
   version: ~1.0.0
 - package: github.com/pkg/errors
   version: ~0.8.0
+- package: github.com/rai-project/auth
+- package: github.com/rai-project/config
 - package: github.com/rai-project/email
+  subpackages:
+  - mailgun
+- package: github.com/rai-project/logger
 - package: github.com/spf13/cobra
-- package: github.com/spf13/viper

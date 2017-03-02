@@ -1,18 +1,36 @@
 language: go
-matrix:
-  include:
-    - go: 1.7
-    - go: 1.7.5
-    - go: 1.8
-    - go: tip
-  allow_failures:
-    - go: tip
+go:
+- '1.8'
 sudo: true
 before_install:
-  - sudo add-apt-repository ppa:masterminds/glide -y
-  - sudo apt-get update -q
-  - sudo apt-get install glide -y
+- sudo add-apt-repository ppa:masterminds/glide -y
+- sudo apt-get update -q
+- sudo apt-get install glide -y
 install:
-  - glide install
+- glide install
+- go get github.com/mjibson/esc
+- go get github.com/ahmetb/govvv
+- go get github.com/franciscocpg/gox
 script:
-  - go test -v $(glide novendor)
+- cd ${TRAVIS_BUILD_DIR}/cmd && go generate && cd ${TRAVIS_BUILD_DIR}
+- CGO_ENABLED=0 gox -verbose -ldflags="$(govvv -flags)" -ldflags="-s -w" -os="linux
+  darwin windows" -arch="amd64 386 armv5 armv6 armv7 arm64" -osarch="!darwin/arm64
+  linux/ppc64 linux/ppc64le" -ldflags="-X github.com/rai-project/rai/cmd.appsecret=\"${APP_SECRET}\""
+  -ldflags "-extldflags \"-static\"" -output="dist/rai-keygen-{{.OS}}-{{.Arch}}/{{.Dir}}"
+  .
+before_deploy:
+- ls -l dist
+deploy:
+  provider: s3
+  access_key_id: AKIAIAFSJLCCOYB5V3EQ
+  secret_access_key:
+    secure: A3N1yE+/qWrutLJ02EKp9pd93pxM9oRiUpQD8D1v4ozsQSTRWVTqzRPRi0e78nkk/VCvuq/pi0IyOCNOskIq6UKHckoXa3MwOorSD8YVWkUPV4vT44KC+Xx3qwoJLu4D2KCGD1L5A2n22WBMtw9aqqpeGabi4ee7Ax+YyPBkUgbdE8TNeupxF7KIhi7sCYUCeZ/w2Q8Z596iLWuSwdHGT+SqeKriGi9S8s175Zcj7z7cQzXeQRWOugx+5ZlUe4JprMt5dLVhYYzz7IYQOXQtddTkGG+VLc0YbmtVIjUcrWNcKkH9KY/VvnQBMyEgSxRRL4ALp9jxAE4ojs1IaOdAByhADZqHzbnLvQ9l+edi5lCMMXXw2ZrNHMBjKMrUNL75kAzd6vdbr+9Jlt2hmcvVJGC9TvPpMQloXio0CWDGXyF/NIADOdKJQjXy3jGVbA+j4d2B49jddz1dSE8X38fCxmh5yHmoWeTJyvRoJUWY1subEr+LyVy5ewewXdCXBGvcom6PC2LMdevCqGiRUgpH1lqF5tDeIK2Gw8IE48GlkdotptYS/BntNFqbiQWI9MNENa408UMgoCsXaLVFOZ9x34LDTUBcxTaDvCF0E4Myr/ri9pLyzmFU68MT/s8YZ31rXk1dxsUoopOFGptq3Az+E+QkfYOGG+kYy21hkHDZJoA=
+  bucket: files.rai-project.com
+  local-dir: dist
+  upload-dir: dist
+  acl: private
+  on:
+    repo: rai-project/rai-keygen
+env:
+  global:
+    secure: d+9DHzWNAiK86FVQ9xdPL4tF/CD8rN3H4kgFZSbi/ydzBDoszWjA6b/r9FY6aF4ZelbLFUoEiemeB8q/yuv+lafqjJ6BsKCUvXkt07o00uI2PF7/8Cyoqp7BG/3lZ97eiG8CwQMXIJwk/NP1CzcCCXtTeyd5LTqwL2UKXKUyWuk/OjTbsg1ZkYMx2KmWXrtNaowPgglVwFiZfoXr9LR8SsB7D9d6teXimJNGOT0tmFnxnsxKjpud8l1aGJvMQ71ezZJYyGXhGhimZffNIBg4qQ76MLadTwAwLgHeE5IDrERDMFUhnHAV6DL9XU+xE9CTdSYnI7nbYLvr0MDWx997IA1v6NUMG6/fqpt/yK50wH/U8OuaRf0D9LpWIE2U64A7GTmB0UXkQorpLine8s4x//BCg0WdNPd0fJQ/WTQP9QoUvDZ+ElrgQnqYVNjsL59e0IKKOIIH0CkStQw86rfqqk1OmLlQIH3tFe+4iTaTuwIhn0z6769Aiza+rdn9f1Tc2QPL5gpFB92nnLLldRY1oxrnNgGpAzALNygXKDyBjSWtpvUWtx5TZ0V0T2x8/fWHhFcnjlPAHnm8TiAzGKK36risq/H9Zud56yiAFXz7swsbtpACp+wE99lWzb2DV+HbKa+wxp3pp5FL0nALH05oKPEi3jRGqeB4DFRHxZjR1aA=

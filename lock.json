@@ -1,6 +1,14 @@
 {
-    "memo": "b0e8830225048cebf0c1429f64021a0947f77908b0be9b0895f98f92be8baf3f",
+    "memo": "379a33e7f028889fe3f63a043ad1a3cd87a02995dca7e0bf1e22b91e58cb0f61",
     "projects": [
+        {
+            "name": "github.com/BurntSushi/toml",
+            "branch": "master",
+            "revision": "99064174e013895bbd9b025c31100bd1d9b590ca",
+            "packages": [
+                "."
+            ]
+        },
         {
             "name": "github.com/GeertJohan/go-sourcepath",
             "branch": "master",
@@ -14,13 +22,30 @@
             "branch": "master",
             "revision": "0208149b40d863d2c1a2f8fe5753096a9cf2cc8b",
             "packages": [
-                "."
+                ".",
+                "hooks/syslog"
             ]
         },
         {
             "name": "github.com/Unknwon/com",
             "branch": "master",
             "revision": "0db4a625e949e956314d7d1adea9bf82384cc10c",
+            "packages": [
+                "."
+            ]
+        },
+        {
+            "name": "github.com/fatih/color",
+            "branch": "master",
+            "revision": "7824417a424b65227be8ac9b14d545a7f3e6c3f0",
+            "packages": [
+                "."
+            ]
+        },
+        {
+            "name": "github.com/fatih/structs",
+            "branch": "master",
+            "revision": "a720dfa8df582c51dee1b36feabb906bde1588bd",
             "packages": [
                 "."
             ]
@@ -58,9 +83,41 @@
             ]
         },
         {
+            "name": "github.com/k0kubun/pp",
+            "branch": "master",
+            "revision": "d1532fc5d94ecdf2da29e24d7b99721f3287de4a",
+            "packages": [
+                "."
+            ]
+        },
+        {
             "name": "github.com/magiconair/properties",
             "branch": "master",
             "revision": "b3b15ef068fd0b17ddf408a23669f20811d194d2",
+            "packages": [
+                "."
+            ]
+        },
+        {
+            "name": "github.com/mattn/go-colorable",
+            "branch": "master",
+            "revision": "d898aa9fb31c91f35dd28ca75db377eff023c076",
+            "packages": [
+                "."
+            ]
+        },
+        {
+            "name": "github.com/mattn/go-isatty",
+            "branch": "master",
+            "revision": "dda3de49cbfcec471bd7a70e6cc01fcc3ff90109",
+            "packages": [
+                "."
+            ]
+        },
+        {
+            "name": "github.com/mitchellh/go-homedir",
+            "branch": "master",
+            "revision": "b8bc1bf767474819792c23f32d8286a45736f1c6",
             "packages": [
                 "."
             ]
@@ -98,9 +155,50 @@
             ]
         },
         {
+            "name": "github.com/rai-project/auth",
+            "branch": "master",
+            "revision": "da1b1a1e4559330884a054adbff5e31cb8df83ef",
+            "packages": [
+                "."
+            ]
+        },
+        {
+            "name": "github.com/rai-project/config",
+            "branch": "master",
+            "revision": "89e25e39258e3ce3660488e913fcc5c3c52095d4",
+            "packages": [
+                "."
+            ]
+        },
+        {
             "name": "github.com/rai-project/email",
             "branch": "master",
-            "revision": "6c77ccaebdf63698f20fd8a3de39fdf2b4b0b554",
+            "revision": "7ef69b56c1e0d85791e127d6b9458d5128e82c49",
+            "packages": [
+                ".",
+                "mailgun"
+            ]
+        },
+        {
+            "name": "github.com/rai-project/godotenv",
+            "branch": "master",
+            "revision": "4eea5d4863542334d540a85cbd0ce558ca30d90c",
+            "packages": [
+                "."
+            ]
+        },
+        {
+            "name": "github.com/rai-project/logger",
+            "branch": "master",
+            "revision": "c503a9575b4139beecc26a0fc3038594bdfb63e8",
+            "packages": [
+                "."
+            ]
+        },
+        {
+            "name": "github.com/rai-project/vipertags",
+            "branch": "master",
+            "revision": "918eb5088d4a3abf31fb6aac339fd1196ceee2a9",
             "packages": [
                 "."
             ]
@@ -155,6 +253,17 @@
             ]
         },
         {
+            "name": "golang.org/x/crypto",
+            "branch": "master",
+            "revision": "453249f01cfeb54c3d549ddb75ff152ca243f9d8",
+            "packages": [
+                "bcrypt",
+                "blowfish",
+                "pbkdf2",
+                "scrypt"
+            ]
+        },
+        {
             "name": "golang.org/x/sys",
             "branch": "master",
             "revision": "e4594059fe4cde2daf423055a596c2cd1e6c9adf",
@@ -173,6 +282,45 @@
                 "transform",
                 "unicode/cldr",
                 "unicode/norm"
+            ]
+        },
+        {
+            "name": "gopkg.in/hlandau/easymetric.v1",
+            "branch": "master",
+            "revision": "1c173222e345c2ba115e0f483821c6da2d3b0fa9",
+            "packages": [
+                "cexp"
+            ]
+        },
+        {
+            "name": "gopkg.in/hlandau/measurable.v1",
+            "branch": "master",
+            "revision": "d96a009bd9bda94dd1294105e67e8c1794e533d3",
+            "packages": [
+                "."
+            ]
+        },
+        {
+            "name": "gopkg.in/hlandau/passlib.v1",
+            "branch": "master",
+            "revision": "933f1c3f63ffb0d17de04c3174f875ae683a33cd",
+            "packages": [
+                ".",
+                "abstract",
+                "hash/bcrypt",
+                "hash/bcryptsha256",
+                "hash/scrypt",
+                "hash/scrypt/raw",
+                "hash/sha2crypt",
+                "hash/sha2crypt/raw"
+            ]
+        },
+        {
+            "name": "gopkg.in/mailgun/mailgun-go.v1",
+            "branch": "master",
+            "revision": "a4002e2df2e8ca2da6a6fbb4a72871b504e49f50",
+            "packages": [
+                "."
             ]
         },
         {
