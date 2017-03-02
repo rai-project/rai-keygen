@@ -6,10 +6,9 @@ For the Applied Parallel Programming (ECE408/CS483) project, we will be using a 
 
 The RAI system requires some authentication tokens to be present in your $HOME/.rai.profile (linux/OSX) or %HOME%/.rai.profile (Windows) file. The following are token generated specifically for you:
 
-RAI_TEAM_NAME='Your Team Name Here'
-RAI_USER_NAME='{{ .Username }}'
-RAI_ACCESS_KEY='{{ .RAIAccessKey }}'
-RAI_SECRET_KEY='{{ .RAISecretKey }}'
+username = "{{ .Username }}"
+access_key = "{{ .AccessKey }}"
+secret_key = "{{ .SecretKey }}"
 
 Do not share your keys with other users or teams. The access and secret key is used to authenticate you with the server. Both the team name and the username are used to identify you to the system.
 

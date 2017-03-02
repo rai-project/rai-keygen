@@ -18,29 +18,37 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/BurntSushi/toml"
+	"github.com/rai-project/auth"
+	"github.com/rai-project/config"
 	"github.com/spf13/cobra"
-	"github.com/spf13/viper"
 )
 
-var cfgFile string
+var (
+	username  string
+	appsecret string
+)
 
-// RootCmd represents the base command when called without any subcommands
 var RootCmd = &cobra.Command{
-	Use:   "rai-keygen",
-	Short: "A brief description of your application",
-	Long: `A longer description that spans multiple lines and likely contains
-examples and usage of using your application. For example:
-
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
-// Uncomment the following line if your bare application
-// has an action associated with it:
-//	Run: func(cmd *cobra.Command, args []string) { },
+	Use: "rai-keygen",
+	RunE: func(cmd *cobra.Command, args []string) error {
+		accessKey, secretKey, err := auth.Hash(username)
+		if err != nil {
+			return err
+		}
+		enc := toml.NewEncoder(os.Stdout)
+		err = enc.Encode(User{
+			Username:  username,
+			AccessKey: accessKey,
+			SecretKey: secretKey,
+		})
+		if err != nil {
+			return err
+		}
+		return nil
+	},
 }
 
-// Execute adds all child commands to the root command sets flags appropriately.
-// This is called by main.main(). It only needs to happen once to the rootCmd.
 func Execute() {
 	if err := RootCmd.Execute(); err != nil {
 		fmt.Println(err)
@@ -51,28 +59,15 @@ func Execute() {
 func init() {
 	cobra.OnInitialize(initConfig)
 
-	// Here you will define your flags and configuration settings.
-	// Cobra supports Persistent Flags, which, if defined here,
-	// will be global for your application.
-
-	RootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.rai-keygen.yaml)")
-	// Cobra also supports local flags, which will only run
-	// when this action is called directly.
-	RootCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+	RootCmd.Flags().StringVarP(&username, "username", "u", "",
+		"The username to generate the command for.")
+	RootCmd.Flags().StringVarP(&appsecret, "appsecret", "s", "",
+		"The application secret key.")
 }
 
 // initConfig reads in config file and ENV variables if set.
 func initConfig() {
-	if cfgFile != "" { // enable ability to specify config file via flag
-		viper.SetConfigFile(cfgFile)
-	}
-
-	viper.SetConfigName(".rai-keygen") // name of config file (without extension)
-	viper.AddConfigPath("$HOME")  // adding home directory as first search path
-	viper.AutomaticEnv()          // read in environment variables that match
-
-	// If a config file is found, read it in.
-	if err := viper.ReadInConfig(); err == nil {
-		fmt.Println("Using config file:", viper.ConfigFileUsed())
-	}
+	config.Init(
+		config.AppName("rai"),
+	)
 }

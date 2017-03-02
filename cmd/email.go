@@ -11,12 +11,21 @@ import (
 	"text/template"
 
 	sourcepath "github.com/GeertJohan/go-sourcepath"
-	"github.com/Sirupsen/logrus"
 	"github.com/Unknwon/com"
 	"github.com/pkg/errors"
-	"github.com/rai-project/email"
+	"github.com/rai-project/auth"
+	"github.com/rai-project/email/mailgun"
 	"github.com/spf13/cobra"
 )
+
+type User struct {
+	LastName  string `toml:"-"`
+	FirstName string `toml:"-"`
+	Username  string `toml:"username"`
+	Email     string `toml:"-"`
+	AccessKey string `toml:"access_key"`
+	SecretKey string `toml:"secret_key"`
+}
 
 var (
 	// studentListFileName = "/Users/abduld/Code/wbgo/utils/408users.csv"
@@ -33,53 +42,40 @@ var emailKeysCmd = &cobra.Command{
 		"Another parameter that's needed is the mailgun key.",
 	Hidden: true,
 	RunE: func(cmd *cobra.Command, args []string) error {
-		slog := logrus.New()
-		slog.Level = logrus.DebugLevel
-		slog.Formatter = &logrus.TextFormatter{}
-		log := slog.New().WithField("cmd", "emailkeys")
+		log := log.WithField("cmd", "emailkeys")
 
 		if studentListFileName == "" || !com.IsFile(studentListFileName) {
-			fmt.Println("Error:: the student file list has not been found.")
 			return errors.New("The student file list has not been found.")
 		}
 		if emailTemplateFileName == "" {
 			srcPath, err := sourcepath.AbsoluteDir()
 			if err != nil {
-				fmt.Println("Error:: the email template file has not been set.")
 				return errors.New("The email template file has not been set.")
 			}
 			emailTemplateFileName = filepath.Join(srcPath, "rai-emailkeys", "emailkey.template")
 		}
 		if !com.IsFile(emailTemplateFileName) {
-			fmt.Println("Error:: the email template file has not been found.")
 			return errors.New("The email template file has not been found.")
 		}
 
 		studentFile, err := os.Open(studentListFileName)
 		if err != nil {
-			fmt.Printf("Error(%v):: failed to open the student list file.\n", err)
 			return errors.Wrap(err, "Failed to open the student list file")
 		}
 		defer studentFile.Close()
 
 		emailTemplateFileBytes, err := ioutil.ReadFile(emailTemplateFileName)
 		if err != nil {
-			fmt.Printf("Error(%v):: failed to read the email template file.\n", err)
 			return errors.Wrap(err, "Failed to read the email template file")
 		}
 		emailTemplateFileContent := string(emailTemplateFileBytes)
 
 		emailTemplate, err := template.New("email_template").Parse(emailTemplateFileContent)
 
-		type User struct {
-			LastName     string
-			FirstName    string
-			Email        string
-			RAISecretKey string
-			RAIAccessKey string
+		mail, err := mailgun.New()
+		if err != nil {
+			return err
 		}
-
-		mail := email.New()
 
 		r := csv.NewReader(studentFile)
 		for {
@@ -91,19 +87,25 @@ var emailKeysCmd = &cobra.Command{
 				fmt.Printf("Error(%v):: cannot read record in the student file list.\n", err)
 				continue
 			}
-			if len(record) != 3 {
+			if len(record) != 4 {
 				fmt.Printf("Error(%v):: cannot read record in the student file list. "+
-					"The format must be [lastname, firstname, email]\n", err)
+					"The format must be [lastname, firstname, username, email]\n", err)
 				continue
 			}
-			key := keygen.New()
-			user := User{
-				LastName:     record[0],
-				FirstName:    record[1],
-				Email:        record[2],
-				RAISecretKey: key.Secret,
-				RAIAccessKey: key.Access,
+			username := record[2]
+			accessKey, secretKey, err := auth.Hash(username)
+			if err != nil {
+				return err
 			}
+			user := User{
+				LastName:  record[0],
+				FirstName: record[1],
+				Username:  username,
+				Email:     record[3],
+				SecretKey: secretKey,
+				AccessKey: accessKey,
+			}
+
 			emailBody := new(bytes.Buffer)
 			err = emailTemplate.Execute(emailBody, user)
 			if err != nil {
@@ -119,8 +121,8 @@ var emailKeysCmd = &cobra.Command{
 			log.WithField("first_name", user.FirstName).
 				WithField("last_name", user.LastName).
 				WithField("user_name", user.Username).
-				WithField("secret", user.RAISecretKey).
-				WithField("access", user.RAIAccessKey).
+				WithField("secret", user.SecretKey).
+				WithField("access", user.AccessKey).
 				Infof("Email was successfully sent to %s.\n", user.Email)
 		}
 		return nil
