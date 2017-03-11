@@ -20,14 +20,17 @@ var (
 	username  string
 	email     string
 	appsecret string
+	firstname string
+	lastname  string
 	isColor   bool
 	isVerbose bool
 	isDebug   bool
 )
 
 var RootCmd = &cobra.Command{
-	Use:          "rai-keygen",
-	SilenceUsage: true,
+	Use:           "rai-keygen",
+	SilenceUsage:  true,
+	SilenceErrors: true,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		var err error
 		var prof auth.Profile
@@ -35,6 +38,8 @@ var RootCmd = &cobra.Command{
 		profOpts := []auth.ProfileOption{
 			auth.Username(username),
 			auth.Email(email),
+			auth.Firstname(firstname),
+			auth.Lastname(lastname),
 		}
 		provider := auth.Provider(strings.ToLower(auth.Config.Provider))
 		switch provider {
@@ -77,6 +82,10 @@ func init() {
 		"The username to generate the key for.")
 	RootCmd.Flags().StringVarP(&email, "email", "e", "",
 		"The email to generate the key for.")
+	RootCmd.Flags().StringVarP(&firstname, "firstname", "f", "",
+		"The firstname to generate the key for.")
+	RootCmd.Flags().StringVarP(&lastname, "lastname", "l", "",
+		"The lastname to generate the key for.")
 	RootCmd.Flags().StringVarP(&appsecret, "appsecret", "s", "",
 		"The application secret key.")
 	RootCmd.PersistentFlags().BoolVarP(&isColor, "color", "c", color.NoColor, "Toggle color output.")
