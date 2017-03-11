@@ -12,6 +12,6 @@ var (
 
 func init() {
 	config.OnInit(func() {
-		log = logger.New().WithField("pkg", "email/cmd")
+		log = logger.New().WithField("pkg", "keygen/cmd")
 	})
 }

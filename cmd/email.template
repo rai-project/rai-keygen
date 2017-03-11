@@ -1,4 +1,4 @@
-Hello {{ .FirstName }} {{ .LastName }},
+Hello {{ .Firstname }} {{ .Lastname }},
 
 If you are not currently registered for Applied Parallel Programming (ECE408/CS483) then please ignore this email. If you are, then please read the following carefully since it is how you will be able to develop your project.
 
@@ -7,6 +7,7 @@ For the Applied Parallel Programming (ECE408/CS483) project, we will be using a 
 The RAI system requires some authentication tokens to be present in your $HOME/.rai.profile (linux/OSX) or %HOME%/.rai.profile (Windows) file. The following are token generated specifically for you:
 
 username = "{{ .Username }}"
+email = "{{ .Email }}"
 access_key = "{{ .AccessKey }}"
 secret_key = "{{ .SecretKey }}"
 

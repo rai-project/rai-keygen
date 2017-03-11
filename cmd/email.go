@@ -8,12 +8,15 @@ import (
 	"io/ioutil"
 	"os"
 	"path/filepath"
+	"strings"
 	"text/template"
 
 	sourcepath "github.com/GeertJohan/go-sourcepath"
 	"github.com/Unknwon/com"
 	"github.com/pkg/errors"
 	"github.com/rai-project/auth"
+	"github.com/rai-project/auth/auth0"
+	"github.com/rai-project/auth/secret"
 	"github.com/rai-project/email/mailgun"
 	"github.com/spf13/cobra"
 )
@@ -31,7 +34,7 @@ var (
 	// studentListFileName = "/Users/abduld/Code/wbgo/utils/408users.csv"
 	studentListFileName   = ""
 	emailTemplateFileName string
-	emailSubjectLine      = "ECE 408 Remote Development Resource Information"
+	emailSubjectLine      = "ECE 508 Remote Development Resource Information"
 )
 
 var emailKeysCmd = &cobra.Command{
@@ -92,19 +95,29 @@ var emailKeysCmd = &cobra.Command{
 					"The format must be [lastname, firstname, username, email]\n", err)
 				continue
 			}
-			username := record[2]
-			accessKey, secretKey, err := auth.Hash(username)
+
+			var prof auth.Profile
+
+			profOpts := []auth.ProfileOption{
+				auth.Lastname(record[0]),
+				auth.Firstname(record[1]),
+				auth.Username(record[2]),
+				auth.Email(record[3]),
+			}
+			provider := auth.Provider(strings.ToLower(auth.Config.Provider))
+			switch provider {
+			case auth.Auth0Provider:
+				prof, err = auth0.NewProfile(profOpts...)
+			case auth.SecretProvider:
+				prof, err = secret.NewProfile(profOpts...)
+			default:
+				err = errors.Errorf("the auth provider %v specified is not supported", provider)
+			}
 			if err != nil {
 				return err
 			}
-			user := User{
-				LastName:  record[0],
-				FirstName: record[1],
-				Username:  username,
-				Email:     record[3],
-				SecretKey: secretKey,
-				AccessKey: accessKey,
-			}
+
+			user := prof.Info()
 
 			emailBody := new(bytes.Buffer)
 			err = emailTemplate.Execute(emailBody, user)
@@ -118,8 +131,8 @@ var emailKeysCmd = &cobra.Command{
 				continue
 			}
 
-			log.WithField("first_name", user.FirstName).
-				WithField("last_name", user.LastName).
+			log.WithField("first_name", user.Firstname).
+				WithField("last_name", user.Lastname).
 				WithField("user_name", user.Username).
 				WithField("secret", user.SecretKey).
 				WithField("access", user.AccessKey).
