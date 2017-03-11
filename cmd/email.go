@@ -119,13 +119,21 @@ var emailKeysCmd = &cobra.Command{
 
 			user := prof.Info()
 
+			templateParams := struct {
+				auth.ProfileBase
+				ProfileContent string
+			}{
+				ProfileBase:    user,
+				ProfileContent: user.String(),
+			}
+
 			emailBody := new(bytes.Buffer)
-			err = emailTemplate.Execute(emailBody, user)
+			err = emailTemplate.Execute(emailBody, templateParams)
 			if err != nil {
 				fmt.Printf("Error(%v):: failed to create email message body. \n", err)
 				continue
 			}
-			err = mail.Send(user.Email, emailSubjectLine, emailBody.String())
+			err = mail.Send(templateParams.Email, emailSubjectLine, emailBody.String())
 			if err != nil {
 				fmt.Printf("Failed to send email to %s.\n", user.Email)
 				continue

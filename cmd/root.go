@@ -5,7 +5,6 @@ import (
 	"os"
 	"strings"
 
-	"github.com/BurntSushi/toml"
 	"github.com/fatih/color"
 	"github.com/pkg/errors"
 	"github.com/rai-project/auth"
@@ -54,13 +53,8 @@ var RootCmd = &cobra.Command{
 			return err
 		}
 
-		user := prof.Info()
+		fmt.Print(prof.Info().String())
 
-		enc := toml.NewEncoder(os.Stdout)
-		err = enc.Encode(user)
-		if err != nil {
-			return err
-		}
 		return nil
 	},
 }
