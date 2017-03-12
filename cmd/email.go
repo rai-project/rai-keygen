@@ -8,15 +8,13 @@ import (
 	"io/ioutil"
 	"os"
 	"path/filepath"
-	"strings"
 	"text/template"
 
 	sourcepath "github.com/GeertJohan/go-sourcepath"
 	"github.com/Unknwon/com"
 	"github.com/pkg/errors"
 	"github.com/rai-project/auth"
-	"github.com/rai-project/auth/auth0"
-	"github.com/rai-project/auth/secret"
+	"github.com/rai-project/auth/provider"
 	"github.com/rai-project/email/mailgun"
 	"github.com/spf13/cobra"
 )
@@ -96,23 +94,12 @@ var emailKeysCmd = &cobra.Command{
 				continue
 			}
 
-			var prof auth.Profile
-
-			profOpts := []auth.ProfileOption{
+			prof, err := provider.New(
 				auth.Lastname(record[0]),
 				auth.Firstname(record[1]),
 				auth.Username(record[2]),
 				auth.Email(record[3]),
-			}
-			provider := auth.Provider(strings.ToLower(auth.Config.Provider))
-			switch provider {
-			case auth.Auth0Provider:
-				prof, err = auth0.NewProfile(profOpts...)
-			case auth.SecretProvider:
-				prof, err = secret.NewProfile(profOpts...)
-			default:
-				err = errors.Errorf("the auth provider %v specified is not supported", provider)
-			}
+			)
 			if err != nil {
 				return err
 			}

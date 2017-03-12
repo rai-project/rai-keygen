@@ -3,13 +3,10 @@ package cmd
 import (
 	"fmt"
 	"os"
-	"strings"
 
 	"github.com/fatih/color"
-	"github.com/pkg/errors"
 	"github.com/rai-project/auth"
-	"github.com/rai-project/auth/auth0"
-	"github.com/rai-project/auth/secret"
+	"github.com/rai-project/auth/provider"
 	"github.com/rai-project/cmd"
 	"github.com/rai-project/config"
 	"github.com/spf13/cobra"
@@ -28,28 +25,22 @@ var (
 )
 
 var RootCmd = &cobra.Command{
-	Use:           "rai-keygen",
+	Use:   "rai-keygen",
+	Short: "Generates profiles to be used with the rai client",
+	Long: `Generates a profile file that needs to be placed in ~/.rai.profile (linux/OSX) or ` +
+		`%HOME%/.rai.profile (Windows -- for me this is C:\Users\abduld\.rai.profile). ` +
+		`The rai client reads these configuration files to authenticate the user. ` +
+		`A seed (appSecret) is used to generate secure credentials`,
 	SilenceUsage:  true,
 	SilenceErrors: true,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		var err error
 		var prof auth.Profile
 
-		profOpts := []auth.ProfileOption{
-			auth.Username(username),
+		prof, err := provider.New(auth.Username(username),
 			auth.Email(email),
 			auth.Firstname(firstname),
-			auth.Lastname(lastname),
-		}
-		provider := auth.Provider(strings.ToLower(auth.Config.Provider))
-		switch provider {
-		case auth.Auth0Provider:
-			prof, err = auth0.NewProfile(profOpts...)
-		case auth.SecretProvider:
-			prof, err = secret.NewProfile(profOpts...)
-		default:
-			err = errors.Errorf("the auth provider %v specified is not supported", provider)
-		}
+			auth.Lastname(lastname))
 		if err != nil {
 			return err
 		}
@@ -76,6 +67,7 @@ func init() {
 	RootCmd.AddCommand(cmd.VersionCmd)
 	RootCmd.AddCommand(cmd.LicenseCmd)
 	RootCmd.AddCommand(cmd.EnvCmd)
+	RootCmd.AddCommand(cmd.GendocCmd)
 
 	RootCmd.Flags().StringVarP(&username, "username", "u", "",
 		"The username to generate the key for.")
