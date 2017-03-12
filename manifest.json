@@ -1,8 +1,5 @@
 {
     "dependencies": {
-        "github.com/BurntSushi/toml": {
-            "branch": "master"
-        },
         "github.com/GeertJohan/go-sourcepath": {
             "branch": "master"
         },
@@ -12,10 +9,16 @@
         "github.com/Unknwon/com": {
             "branch": "master"
         },
+        "github.com/fatih/color": {
+            "branch": "master"
+        },
         "github.com/pkg/errors": {
             "branch": "master"
         },
         "github.com/rai-project/auth": {
+            "branch": "master"
+        },
+        "github.com/rai-project/cmd": {
             "branch": "master"
         },
         "github.com/rai-project/config": {
@@ -28,6 +31,9 @@
             "branch": "master"
         },
         "github.com/spf13/cobra": {
+            "branch": "master"
+        },
+        "github.com/spf13/viper": {
             "branch": "master"
         }
     }

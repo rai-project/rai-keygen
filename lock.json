@@ -1,14 +1,6 @@
 {
-    "memo": "379a33e7f028889fe3f63a043ad1a3cd87a02995dca7e0bf1e22b91e58cb0f61",
+    "memo": "fd8e6de5059cfb8fba88c772065d66606e7f05e90a35cde695ba23bbe82529e1",
     "projects": [
-        {
-            "name": "github.com/BurntSushi/toml",
-            "branch": "master",
-            "revision": "99064174e013895bbd9b025c31100bd1d9b590ca",
-            "packages": [
-                "."
-            ]
-        },
         {
             "name": "github.com/GeertJohan/go-sourcepath",
             "branch": "master",
@@ -20,7 +12,7 @@
         {
             "name": "github.com/Sirupsen/logrus",
             "branch": "master",
-            "revision": "0208149b40d863d2c1a2f8fe5753096a9cf2cc8b",
+            "revision": "1deb2db2a6fff8a35532079061b903c3a25eed52",
             "packages": [
                 ".",
                 "hooks/syslog"
@@ -30,6 +22,22 @@
             "name": "github.com/Unknwon/com",
             "branch": "master",
             "revision": "0db4a625e949e956314d7d1adea9bf82384cc10c",
+            "packages": [
+                "."
+            ]
+        },
+        {
+            "name": "github.com/cpuguy83/go-md2man",
+            "branch": "master",
+            "revision": "a65d4d2de4d5f7c74868dfa9b202a3c8be315aaa",
+            "packages": [
+                "md2man"
+            ]
+        },
+        {
+            "name": "github.com/facebookgo/stack",
+            "branch": "master",
+            "revision": "751773369052141c013c6e827a71e8f35c07879c",
             "packages": [
                 "."
             ]
@@ -157,7 +165,19 @@
         {
             "name": "github.com/rai-project/auth",
             "branch": "master",
-            "revision": "da1b1a1e4559330884a054adbff5e31cb8df83ef",
+            "revision": "227aa4301b2eb49fba3bb37119c1067008ee29ab",
+            "packages": [
+                ".",
+                "auth0",
+                "auth0/api",
+                "provider",
+                "secret"
+            ]
+        },
+        {
+            "name": "github.com/rai-project/cmd",
+            "branch": "master",
+            "revision": "67cca8b1c3b9e9cb830f75cdc092e1e2b201adbe",
             "packages": [
                 "."
             ]
@@ -165,7 +185,7 @@
         {
             "name": "github.com/rai-project/config",
             "branch": "master",
-            "revision": "89e25e39258e3ce3660488e913fcc5c3c52095d4",
+            "revision": "4e772ccbc6c2d66a8285d4c8d0e94c5c20a1dfeb",
             "packages": [
                 "."
             ]
@@ -173,7 +193,7 @@
         {
             "name": "github.com/rai-project/email",
             "branch": "master",
-            "revision": "7ef69b56c1e0d85791e127d6b9458d5128e82c49",
+            "revision": "58c3e8bdaf480880d162a71248a5884d7a6fe066",
             "packages": [
                 ".",
                 "mailgun"
@@ -190,7 +210,23 @@
         {
             "name": "github.com/rai-project/logger",
             "branch": "master",
-            "revision": "c503a9575b4139beecc26a0fc3038594bdfb63e8",
+            "revision": "18cb3edb6ab2e424faa3c96d988b2237b6cd8e65",
+            "packages": [
+                "."
+            ]
+        },
+        {
+            "name": "github.com/rai-project/model",
+            "branch": "master",
+            "revision": "d16696c980bb9ef22f9a33111a1723bafa21543a",
+            "packages": [
+                "."
+            ]
+        },
+        {
+            "name": "github.com/rai-project/utils",
+            "branch": "master",
+            "revision": "7a189b20fc8151d81803e4b3e27bba7e578f2cf4",
             "packages": [
                 "."
             ]
@@ -198,7 +234,23 @@
         {
             "name": "github.com/rai-project/vipertags",
             "branch": "master",
-            "revision": "918eb5088d4a3abf31fb6aac339fd1196ceee2a9",
+            "revision": "9c71f81fd78302f0665e1d180c506d26a19f226a",
+            "packages": [
+                "."
+            ]
+        },
+        {
+            "name": "github.com/russross/blackfriday",
+            "branch": "master",
+            "revision": "5f33e7b7878355cd2b7e6b8eefc48a5472c69f70",
+            "packages": [
+                "."
+            ]
+        },
+        {
+            "name": "github.com/shurcooL/sanitized_anchor_name",
+            "branch": "master",
+            "revision": "1dba4b3954bc059efc3991ec364f9f9a35f597d2",
             "packages": [
                 "."
             ]
@@ -225,7 +277,8 @@
             "branch": "master",
             "revision": "92ea23a837e66f46ac9e7d04fa826602b7b0a42d",
             "packages": [
-                "."
+                ".",
+                "doc"
             ]
         },
         {
@@ -274,7 +327,7 @@
         {
             "name": "golang.org/x/text",
             "branch": "master",
-            "revision": "0ad425fe45e885577bef05dc1c50f72e33188b16",
+            "revision": "f28f36722d5ef2f9655ad3de1f248e3e52ad5ebd",
             "packages": [
                 "internal/gen",
                 "internal/triegen",

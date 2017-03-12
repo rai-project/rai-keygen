@@ -34,10 +34,8 @@ var RootCmd = &cobra.Command{
 	SilenceUsage:  true,
 	SilenceErrors: true,
 	RunE: func(cmd *cobra.Command, args []string) error {
-		var err error
-		var prof auth.Profile
-
-		prof, err := provider.New(auth.Username(username),
+		prof, err := provider.New(
+			auth.Username(username),
 			auth.Email(email),
 			auth.Firstname(firstname),
 			auth.Lastname(lastname))
