@@ -1,5 +1,5 @@
 ---
-date: 2017-03-12T13:25:33Z
+date: 2017-03-12T13:37:38Z
 title: "rai-keygen"
 slug: rai-keygen
 url: /commands/rai-keygen/
@@ -11,7 +11,7 @@ Generates profiles to be used with the rai client
 ### Synopsis
 
 
-Generates a profile file that needs to be placed in ~/.rai.profile (linux/OSX) or %HOME%/.rai.profile (Windows -- for me this is C:\Users\abduld\.rai.profile). The rai client reads these configuration files to authenticate the user. A seed (appSecret) is used to generate secure credentials
+Generates a profile file that needs to be placed in `~/.rai.profile` (linux/OSX) or `%HOME%/.rai.profile` (Windows -- for me this is `C:\Users\abduld\.rai.profile`). The rai client reads these configuration files to authenticate the user. A seed (specified by `secret`) is used to generate secure credentials
 
 ```
 rai-keygen

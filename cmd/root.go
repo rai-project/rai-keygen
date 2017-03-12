@@ -27,10 +27,10 @@ var (
 var RootCmd = &cobra.Command{
 	Use:   "rai-keygen",
 	Short: "Generates profiles to be used with the rai client",
-	Long: `Generates a profile file that needs to be placed in ~/.rai.profile (linux/OSX) or ` +
-		`%HOME%/.rai.profile (Windows -- for me this is C:\Users\abduld\.rai.profile). ` +
-		`The rai client reads these configuration files to authenticate the user. ` +
-		`A seed (appSecret) is used to generate secure credentials`,
+	Long: "Generates a profile file that needs to be placed in `~/.rai.profile` (linux/OSX) or " +
+		"`%HOME%/.rai.profile` (Windows -- for me this is `C:\\Users\\abduld\\.rai.profile`). " +
+		"The rai client reads these configuration files to authenticate the user. " +
+		"A seed (specified by `secret`) is used to generate secure credentials",
 	SilenceUsage:  true,
 	SilenceErrors: true,
 	RunE: func(cmd *cobra.Command, args []string) error {
