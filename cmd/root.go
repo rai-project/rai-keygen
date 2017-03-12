@@ -66,6 +66,7 @@ func init() {
 	RootCmd.AddCommand(cmd.LicenseCmd)
 	RootCmd.AddCommand(cmd.EnvCmd)
 	RootCmd.AddCommand(cmd.GendocCmd)
+	RootCmd.AddCommand(cmd.CompletionCmd)
 
 	RootCmd.Flags().StringVarP(&username, "username", "u", "",
 		"The username to generate the key for.")
@@ -80,6 +81,8 @@ func init() {
 	RootCmd.PersistentFlags().BoolVarP(&isColor, "color", "c", !color.NoColor, "Toggle color output.")
 	RootCmd.PersistentFlags().BoolVarP(&isVerbose, "verbose", "v", false, "Toggle verbose mode.")
 	RootCmd.PersistentFlags().BoolVarP(&isDebug, "debug", "d", false, "Toggle debug mode.")
+
+	RootCmd.MarkPersistentFlagRequired("secret")
 
 	viper.BindPFlag("app.secret", RootCmd.PersistentFlags().Lookup("secret"))
 	viper.BindPFlag("app.debug", RootCmd.PersistentFlags().Lookup("debug"))

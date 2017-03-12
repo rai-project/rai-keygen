@@ -1,5 +1,5 @@
 ---
-date: 2017-03-12T12:58:37Z
+date: 2017-03-12T13:25:33Z
 title: "rai-keygen"
 slug: rai-keygen
 url: /commands/rai-keygen/
@@ -31,7 +31,7 @@ rai-keygen
 ```
 
 ### SEE ALSO
-* [rai-keygen doc](/commands/rai-keygen_doc/)	 - Generate Markdown documentation for the RAI CLI.
+* [rai-keygen completion](/commands/rai-keygen_completion/)	 - Generates bash completition files.
 * [rai-keygen env](/commands/rai-keygen_env/)	 - Prints the environment variables.
 * [rai-keygen license](/commands/rai-keygen_license/)	 - Displays the project license.
 * [rai-keygen version](/commands/rai-keygen_version/)	 - Prints a the version information
