@@ -72,7 +72,6 @@ func Execute() {
 }
 
 func init() {
-	cobra.OnInitialize(initConfig)
 
 	RootCmd.AddCommand(cmd.VersionCmd)
 	RootCmd.AddCommand(cmd.LicenseCmd)
@@ -86,7 +85,7 @@ func init() {
 		"The firstname to generate the key for.")
 	RootCmd.Flags().StringVarP(&lastname, "lastname", "l", "",
 		"The lastname to generate the key for.")
-	RootCmd.Flags().StringVarP(&appsecret, "appsecret", "s", "",
+	RootCmd.PersistentFlags().StringVarP(&appsecret, "secret", "s", "",
 		"The application secret key.")
 	RootCmd.PersistentFlags().BoolVarP(&isColor, "color", "c", color.NoColor, "Toggle color output.")
 	RootCmd.PersistentFlags().BoolVarP(&isVerbose, "verbose", "v", false, "Toggle verbose mode.")
@@ -96,6 +95,8 @@ func init() {
 	viper.BindPFlag("app.debug", RootCmd.PersistentFlags().Lookup("debug"))
 	viper.BindPFlag("app.verbose", RootCmd.PersistentFlags().Lookup("verbose"))
 	viper.BindPFlag("app.color", RootCmd.PersistentFlags().Lookup("color"))
+
+	cobra.OnInitialize(initConfig)
 }
 
 // initConfig reads in config file and ENV variables if set.
