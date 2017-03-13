@@ -19,6 +19,7 @@ import:
   - mailgun
 - package: github.com/rai-project/logger
 - package: github.com/spf13/cobra
+  version: master
   subpackages:
   - doc
 - package: github.com/spf13/viper
