@@ -19,15 +19,6 @@ import (
 	"github.com/spf13/cobra"
 )
 
-type User struct {
-	LastName  string `toml:"-"`
-	FirstName string `toml:"-"`
-	Username  string `toml:"username"`
-	Email     string `toml:"-"`
-	AccessKey string `toml:"access_key"`
-	SecretKey string `toml:"secret_key"`
-}
-
 var (
 	// studentListFileName = "/Users/abduld/Code/wbgo/utils/408users.csv"
 	studentListFileName   = ""
