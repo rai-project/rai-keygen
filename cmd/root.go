@@ -68,16 +68,11 @@ func init() {
 	RootCmd.AddCommand(cmd.GendocCmd)
 	RootCmd.AddCommand(cmd.CompletionCmd)
 
-	RootCmd.Flags().StringVarP(&username, "username", "u", "",
-		"The username to generate the key for.")
-	RootCmd.Flags().StringVarP(&email, "email", "e", "",
-		"The email to generate the key for.")
-	RootCmd.Flags().StringVarP(&firstname, "firstname", "f", "",
-		"The firstname to generate the key for.")
-	RootCmd.Flags().StringVarP(&lastname, "lastname", "l", "",
-		"The lastname to generate the key for.")
-	RootCmd.PersistentFlags().StringVarP(&appsecret, "secret", "s", "",
-		"The application secret key.")
+	RootCmd.Flags().StringVarP(&username, "username", "u", "", "The username to generate the key for.")
+	RootCmd.Flags().StringVarP(&email, "email", "e", "", "The email to generate the key for.")
+	RootCmd.Flags().StringVarP(&firstname, "firstname", "f", "", "The firstname to generate the key for.")
+	RootCmd.Flags().StringVarP(&lastname, "lastname", "l", "", "The lastname to generate the key for.")
+	RootCmd.PersistentFlags().StringVarP(&appsecret, "secret", "s", "", "The application secret key.")
 	RootCmd.PersistentFlags().BoolVarP(&isColor, "color", "c", !color.NoColor, "Toggle color output.")
 	RootCmd.PersistentFlags().BoolVarP(&isVerbose, "verbose", "v", false, "Toggle verbose mode.")
 	RootCmd.PersistentFlags().BoolVarP(&isDebug, "debug", "d", false, "Toggle debug mode.")
@@ -94,5 +89,6 @@ func init() {
 func initConfig() {
 	config.Init(
 		config.AppName("rai"),
+		config.ConfigString(configContent),
 	)
 }
