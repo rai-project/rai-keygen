@@ -1,6 +1,8 @@
 package main
 
-import "github.com/rai-project/cmd"
+import (
+	"github.com/rai-project/cmd"
+)
 
 var (
 	// These fields are populated by govvv
