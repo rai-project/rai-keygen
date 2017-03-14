@@ -10,6 +10,8 @@ import (
 	"path/filepath"
 	"text/template"
 
+	yaml "gopkg.in/yaml.v2"
+
 	sourcepath "github.com/GeertJohan/go-sourcepath"
 	"github.com/Unknwon/com"
 	"github.com/pkg/errors"
@@ -96,13 +98,20 @@ var emailKeysCmd = &cobra.Command{
 			}
 
 			user := prof.Info()
+			profFileContent, err := yaml.Marshal(user)
+			if err != nil {
+				fmt.Printf("Error(%v):: cannot create profile for user.\n", err)
+				continue
+			}
 
 			templateParams := struct {
 				auth.ProfileBase
-				ProfileContent string
+				ProfileContent     string
+				ProfileFileContent string
 			}{
-				ProfileBase:    user,
-				ProfileContent: user.String(),
+				ProfileBase:        user,
+				ProfileContent:     user.String(),
+				ProfileFileContent: string(profFileContent),
 			}
 
 			emailBody := new(bytes.Buffer)

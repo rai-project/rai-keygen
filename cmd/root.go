@@ -27,8 +27,8 @@ var (
 var RootCmd = &cobra.Command{
 	Use:   "rai-keygen",
 	Short: "Generates profiles to be used with the rai client",
-	Long: "Generates a profile file that needs to be placed in `~/.rai.profile` (linux/OSX) or " +
-		"`%HOME%/.rai.profile` (Windows -- for me this is `C:\\Users\\abduld\\.rai.profile`). " +
+	Long: "Generates a profile file that needs to be placed in `~/.rai_profile` (linux/OSX) or " +
+		"`%HOME%/.rai_profile` (Windows -- for me this is `C:\\Users\\abduld\\.rai_profile`). " +
 		"The rai client reads these configuration files to authenticate the user. " +
 		"A seed (specified by `secret`) is used to generate secure credentials",
 	SilenceUsage:  true,
