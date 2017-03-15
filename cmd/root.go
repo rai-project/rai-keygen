@@ -16,7 +16,6 @@ import (
 var (
 	username  string
 	email     string
-	appsecret string
 	firstname string
 	lastname  string
 	isColor   bool
@@ -72,7 +71,7 @@ func init() {
 	RootCmd.Flags().StringVarP(&email, "email", "e", "", "The email to generate the key for.")
 	RootCmd.Flags().StringVarP(&firstname, "firstname", "f", "", "The firstname to generate the key for.")
 	RootCmd.Flags().StringVarP(&lastname, "lastname", "l", "", "The lastname to generate the key for.")
-	RootCmd.PersistentFlags().StringVarP(&appsecret, "secret", "s", "", "The application secret key.")
+	RootCmd.PersistentFlags().StringVarP(&config.DefaultAppSecret, "secret", "s", "", "The application secret key.")
 	RootCmd.PersistentFlags().BoolVarP(&isColor, "color", "c", !color.NoColor, "Toggle color output.")
 	RootCmd.PersistentFlags().BoolVarP(&isVerbose, "verbose", "v", false, "Toggle verbose mode.")
 	RootCmd.PersistentFlags().BoolVarP(&isDebug, "debug", "d", false, "Toggle debug mode.")
