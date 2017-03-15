@@ -17,7 +17,11 @@ script:
 - VERSION=$(cat ./VERSION)
 - echo "VERSION = ${VERSION}"
 - DIST=${TRAVIS_BUILD_DIR}/dist/rai-keygen/stable
-- CGO_ENABLED=0 gox -verbose  -os="linux darwin windows" -arch="amd64 386 armv5 armv6 armv7 arm64" -osarch="!darwin/arm64 linux/ppc64 linux/ppc64le" -ldflags="$(govvv -flags) -s -w -X github.com/rai-project/rai-keygen/cmd.appsecret=\"${APP_SECRET}\" -extldflags \"-static\"" -output="${DIST}/${VERSION}/{{.OS}}-{{.Arch}}/{{.Dir}}" .
+- CGO_ENABLED=0 gox -verbose  -os="linux darwin windows" -arch="amd64 386 armv5 armv6
+  armv7 arm64" -osarch="!darwin/arm64 linux/ppc64 linux/ppc64le" -ldflags="$(govvv
+  -flags) -s -w -X github.com/rai-project/rai-keygen/cmd.appsecret=\"${APP_SECRET}\"
+  -extldflags \"-static\"" -output="${DIST}/${VERSION}/{{.OS}}-{{.Arch}}/{{.Dir}}"
+  .
 before_deploy:
 - echo "go-selfupdate generating bindiffs"
 - mkdir -p ${DIST}/${VERSION}/binaries
@@ -77,5 +81,4 @@ deploy:
     repo: rai-project/rai-keygen
 env:
   global:
-  - secure: VdWmAuqcbbsB4GR3rhwEnLVpwrLa/hyX+ngYWanmNhe2sIwUIBCGY5RTUUt3Vbj89lecuxqU6RqDnfqj3K+0xR1qHUU9JLCJpy4Axp7KMXwLH2gER0WTRsTbsqs3hTEwGhXEaDXdPzKGb6P3oAkITdd07afk0DO0QQAXJsot7lDKxc95COQVjxwCTiQe1wCge1B/VZSsXK3KebF2PntwQEPNilM5CW0CCNWp7HkMVXr8NvLNM/9XPxxpzm0oZalYyWtJQimPtj/R2k5Vo43z3J/kQyR3Ys+3C6RZg7aR8w0eIS2dE4D5Bo+hejcsqCpSRl9xLmtbDHNZZ3Y/R9O7k4UCYe0tF80DFaknY2BmQvDW2uj9qvRxw5TLU90my0B/n2n4Fr5xAzmb+vhTDLc3CGGyfVxNxI/qTCZhmyjdYlbD+sbzbgmWpQX7CELX+A1+Z9VuPGlZI3k1nvDwBpxA/xSHbrBcCxdsAlJj8xoaqOZCHxWc9IM1lSeh81eSnJY3ZvX4dCnbA0I/+TEbFLV2iUNKGnNyMCkLsTa8TaE7YPiWoR42PH2xBwXiRCAbfASNNY/Yw7HU86JXhaAR2q0p3svP6qI+yOG0B3QX0mIq5aQNRKybNQx19xVGUrXQ4dZJhofe0DTx2aAI9aa6fmC1gDNpyQ+ksa0Oadb7LTIuyWs=
-  - secure: grMBv/wVFaxJl70nlAlM5LaJN4Nlim740yp6YbI3cBoTcbH6mMiIo0VYOvW6idvlUuuk2XNM2jsVPC60UGsH2o2cCOo64e9OBroYTIAEsN7jQWvF+lzRFL9HXIHaIkRdYtEcoOquu1zLQ+QIY2zK4Uer+2p8RzvmQ5FmAwInq9uvONyBDdy9ChU5cxJgXJr+2xxdhY9lQkMqp5WmDCTQDAM4dkC8v35oyNywqiEpsTjRuVVozocWGoJV6V4fYW2au0Hgrvhp4Cdf0CkhQ8t9IjlXW6uS6GYI2uCRuUr55rEAehes0kUXwrwfZcrrwmFlHA/5fxlhXieq8tdIXTYGDJSH3IApqyrn7HXJ0cZ8QhFyPFH0GghGGVEtKKGgYMiYTYgMF5FQLUI6I+0fA1RKw7jMgHLcT9PWVJKVxvjIYcC4CWco7r9TDAKSCbj+YD78g6C0g10lMBK8x5XA5IBaW2Iyfj6+Db55MNCv7IYShSWqaqfQibv4dAMx7QfmQZIBQOY/c98xcPvooNhqRbumh6QC5qToUqZ/+w8Ih52lQH08f765u52JwVM7y4RP0+dlYUGObUpwDVsDCL/vlTOOufNiiLRfWCsxxSlCaiExt7a+RAA4tdGEdA6nakNsmK5Oez9KsUF0i2JL1SZWvVwzCVnc0pePRdEoV+0yfV7BfuA=
+    secure: Dm8M/1ldHrcBCHli9XzzpMLQbfMYqt6Qtk61tD+ZcfzErmU+bLhRUOAP/pR1VZ9Lii7fn4GAq96cbwp05IGgx0lYJdZEsAVVVBrdxChK2Nh5EC1j4eMhrqpuKI3BMdIqragroqc3MTESM6xz+wWcyKh5EnhSgP6OYvxg6wFLl+bXP4hhaqeyMV43XKQ2elYtz3N96Cu+Fgkmaasyty4lo2fZx6urP1hUHCEnwL+a11M4yASyPUuw2OwMQJ2GNWCtycB+t9CSZqVLmtSn7Izl/7fAdexYhfinXDUHcx3kgDrlPrG0orXWIhy3VRWhhMrXGzdHu/8Xn96B6Esk2omkLuzJxsQ/e0fOMOrdtpXzohFcOdkJWwqvy8WZK0XbWzPOVMWu8+biS/qh3wUU/Nn3kbqLccVyW1eVZ1Z4WAeu8JQBuaC0pR2MgHg41N10xn9TvbVD1a2/4dZanfwdgw4rsc+EfZdubv085LgkZ28GKTlNClzHjpJLmcvk5JBAF/IWdEhuE5oJQxQrQ5WWI0DRbavGtsNyRXlpOZQA+E+ARTioCeFsFFCZCGsohHd/GgPcM2HM39XUkFUXQ/8eFuuB7zDOaVnnuPQq1Wy1vrP0+g2KTXaX+f9eUcgMiYfu6Ac2CwgPc9yVxq/IalNk2CHOujeJUeQGKcxNy4Qq9bM4oQU=
