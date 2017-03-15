@@ -19,7 +19,7 @@ script:
 - DIST=${TRAVIS_BUILD_DIR}/dist/rai-keygen/stable
 - CGO_ENABLED=0 gox -verbose  -os="linux darwin windows" -arch="amd64 386 armv5 armv6
   armv7 arm64" -osarch="!darwin/arm64 linux/ppc64 linux/ppc64le" -ldflags="$(govvv
-  -flags) -s -w -X main.appsecret=\"${APP_SECRET}\"
+  -flags) -s -w -X main.AppSecret=\"${APP_SECRET}\"
   -extldflags \"-static\"" -output="${DIST}/${VERSION}/{{.OS}}-{{.Arch}}/{{.Dir}}"
   .
 before_deploy:
