@@ -1,9 +1,9 @@
 package main
 
-import "github.com/rai-project/config"
+import "github.com/rai-project/rai-keygen/cmd"
 
-var AppSecret = "-secret-"
+var AppSecret string
 
 func init() {
-	config.DefaultAppSecret = AppSecret
+	cmd.AppSecret = AppSecret
 }
