@@ -33,22 +33,14 @@ var emailKeysCmd = &cobra.Command{
 		"The student list must be formated as a CSV file and be of the form `lastname, firstname, username, email, affiliation`. " +
 		"The config file must be configured with the propper mailing credentials.",
 	RunE: func(cmd *cobra.Command, args []string) error {
+		var err error
+		var emailTemplateFileBytes []byte
+
 		log := log.WithField("cmd", "emailkeys")
 
-		if studentListFileName == "" || !com.IsFile(studentListFileName) {
-			return errors.New("The student file list has not been found.")
-		}
 		if emailTemplateFileName != "" && !com.IsFile(emailTemplateFileName) {
 			return errors.Errorf("cannot find the email template file %v", emailTemplateFileName)
 		}
-
-		studentFile, err := os.Open(studentListFileName)
-		if err != nil {
-			return errors.Wrap(err, "Failed to open the student list file")
-		}
-		defer studentFile.Close()
-
-		var emailTemplateFileBytes []byte
 
 		if emailTemplateFileName == "" {
 			emailTemplateFileBytes, err = _escFSByte(false, "emailkey.template")
@@ -59,9 +51,17 @@ var emailKeysCmd = &cobra.Command{
 			return errors.Wrap(err, "Failed to read the email template file")
 		}
 
-		emailTemplateFileContent := string(emailTemplateFileBytes)
+		emailTemplate, err := template.New("email_template").Parse(string(emailTemplateFileBytes))
 
-		emailTemplate, err := template.New("email_template").Parse(emailTemplateFileContent)
+		if !com.IsFile(studentListFileName) {
+			return errors.Errorf("cannot find the studen file list %v", studentListFileName)
+		}
+
+		studentFile, err := os.Open(studentListFileName)
+		if err != nil {
+			return errors.Wrap(err, "Failed to open the student list file")
+		}
+		defer studentFile.Close()
 
 		mail, err := mailgun.New()
 		if err != nil {
