@@ -29,12 +29,12 @@ var (
 )
 
 var emailKeysCmd = &cobra.Command{
-	Use:   "emailkeys",
-	Short: "Creates keys for each user in the students list and emails it to the them.",
+	Use:     "emailkeys",
+	Aliases: []string{"email"},
+	Short:   "Creates keys for each user in the students list and emails it to the them.",
 	Long: "Creates keys for each user in the students list and emails it to the them. " +
 		"The student list must be formated as a CSV file and be of the form firstname,lastname,email ." +
 		"Another parameter that's needed is the mailgun key.",
-	Hidden: true,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		log := log.WithField("cmd", "emailkeys")
 
@@ -137,11 +137,13 @@ var emailKeysCmd = &cobra.Command{
 	},
 }
 
-func initEmailKeys() {
-	emailKeysCmd.PersistentFlags().StringVarP(&studentListFileName, "studentlist", "s", studentListFileName,
+func init() {
+	emailKeysCmd.PersistentFlags().StringVarP(&studentListFileName, "studentlist", "l", studentListFileName,
 		"The student list is the file that contains a list of all the students in csv format [lastname,filename,email].")
 	emailKeysCmd.PersistentFlags().StringVarP(&emailTemplateFileName, "template", "t", "",
 		"The email template file to use when sending emails to the students.")
 	emailKeysCmd.PersistentFlags().StringVar(&emailSubjectLine, "emailsubject", emailSubjectLine,
 		"The subjectline for the email sent.")
+
+	RootCmd.AddCommand(emailKeysCmd)
 }
