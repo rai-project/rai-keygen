@@ -1,5 +1,5 @@
 ---
-date: 2017-03-17T00:33:49Z
+date: 2017-03-17T00:48:33Z
 title: "rai-keygen completion"
 slug: rai-keygen_completion
 url: /commands/rai-keygen_completion/

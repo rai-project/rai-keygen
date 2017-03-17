@@ -29,12 +29,12 @@ rai-keygen
 
 ## Email Keys
 
-Creates keys for each user in the students list and emails it to the them.
+Creates keys for each person in a CSV file and emails the key to them.
 
 ### Synopsis
 
 
-Creates keys for each user in the students list and emails it to the them. The student list must be formated as a CSV file and be of the form firstname,lastname,email .Another parameter that's needed is the mailgun key.
+Creates keys for each user in the students list and emails it to the them. The student list must be formated as a CSV file and be of the form `lastname, firstname, username, email, affiliation`. The config file must be configured with the propper mailing credentials.
 
 ```
 rai-keygen emailkeys
@@ -43,9 +43,9 @@ rai-keygen emailkeys
 ### Options
 
 ```
-      --emailsubject string   The subjectline for the email sent. (default "ECE 508 Remote Development Resource Information")
-  -l, --studentlist string    The student list is the file that contains a list of all the students in csv format [lastname,filename,email].
-  -t, --template string       The email template file to use when sending emails to the students.
+  -l, --studentlist string   The student list is the file that contains a list of all the students in csv format [lastname,filename,email].
+      --subject string       The subject line for the email sent.
+  -t, --template string      The email template file to use when sending emails to the students.
 ```
 
 ### Options inherited from parent commands

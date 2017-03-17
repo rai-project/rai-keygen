@@ -1,5 +1,5 @@
 ---
-date: 2017-03-17T00:33:49Z
+date: 2017-03-17T00:48:33Z
 title: "rai-keygen"
 slug: rai-keygen
 url: /commands/rai-keygen/
@@ -32,7 +32,7 @@ rai-keygen
 
 ### SEE ALSO
 * [rai-keygen completion](/commands/rai-keygen_completion/)	 - Generates bash completition files.
-* [rai-keygen emailkeys](/commands/rai-keygen_emailkeys/)	 - Creates keys for each user in the students list and emails it to the them.
+* [rai-keygen emailkeys](/commands/rai-keygen_emailkeys/)	 - Creates keys for each person in a CSV file and emails the key to them.
 * [rai-keygen env](/commands/rai-keygen_env/)	 - Prints the environment variables.
 * [rai-keygen license](/commands/rai-keygen_license/)	 - Displays the project license.
 * [rai-keygen version](/commands/rai-keygen_version/)	 - Prints a the version information
