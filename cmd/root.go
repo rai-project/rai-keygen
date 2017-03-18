@@ -9,6 +9,7 @@ import (
 	"github.com/rai-project/auth/provider"
 	"github.com/rai-project/cmd"
 	"github.com/rai-project/config"
+	_ "github.com/rai-project/logger/hooks"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 )
