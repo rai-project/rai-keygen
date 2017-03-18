@@ -18,17 +18,17 @@ var (
 	email     string
 	firstname string
 	lastname  string
+	appSecret string
 	isColor   bool
 	isVerbose bool
 	isDebug   bool
-	AppSecret string
 )
 
 var RootCmd = &cobra.Command{
 	Use:   "rai-keygen",
 	Short: "Generates profiles to be used with the rai client",
 	Long: "Generates a profile file that needs to be placed in `~/.rai_profile` (linux/OSX) or " +
-		"`%HOME%/.rai_profile` (Windows -- for me this is `C:\\Users\\abduld\\.rai_profile`). " +
+		"`%USERPROFILE%/.rai_profile` (Windows -- for me this is `C:\\Users\\abduld\\.rai_profile`). " +
 		"The rai client reads these configuration files to authenticate the user. " +
 		"A seed (specified by `secret`) is used to generate secure credentials",
 	SilenceUsage:  true,
@@ -72,12 +72,13 @@ func init() {
 	RootCmd.Flags().StringVarP(&email, "email", "e", "", "The email to generate the key for.")
 	RootCmd.Flags().StringVarP(&firstname, "firstname", "f", "", "The firstname to generate the key for.")
 	RootCmd.Flags().StringVarP(&lastname, "lastname", "l", "", "The lastname to generate the key for.")
-	RootCmd.PersistentFlags().StringVarP(&AppSecret, "secret", "s", "", "The application secret key.")
+
+	RootCmd.PersistentFlags().StringVarP(&appSecret, "secret", "s", "", "The application secret key.")
 	RootCmd.PersistentFlags().BoolVarP(&isColor, "color", "c", !color.NoColor, "Toggle color output.")
 	RootCmd.PersistentFlags().BoolVarP(&isVerbose, "verbose", "v", false, "Toggle verbose mode.")
 	RootCmd.PersistentFlags().BoolVarP(&isDebug, "debug", "d", false, "Toggle debug mode.")
 
-	// viper.BindPFlag("app.secret", RootCmd.PersistentFlags().Lookup("secret"))
+	viper.BindPFlag("app.secret", RootCmd.PersistentFlags().Lookup("secret"))
 	viper.BindPFlag("app.debug", RootCmd.PersistentFlags().Lookup("debug"))
 	viper.BindPFlag("app.verbose", RootCmd.PersistentFlags().Lookup("verbose"))
 	viper.BindPFlag("app.color", RootCmd.PersistentFlags().Lookup("color"))
@@ -87,9 +88,12 @@ func init() {
 
 // initConfig reads in config file and ENV variables if set.
 func initConfig() {
-	config.Init(
+	opts := []config.Option{
 		config.AppName("rai"),
-		config.AppSecret(AppSecret),
 		config.ConfigString(configContent),
-	)
+	}
+	if appSecret != "" {
+		opts = append(opts, config.AppSecret(appSecret))
+	}
+	config.Init(opts...)
 }

@@ -1,7 +1,5 @@
 app:
   name: rai
-  verbose: false
-  debug: false
 auth:
   provider: auth0
   domain: raiproject.auth0.com
