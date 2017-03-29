@@ -190,20 +190,23 @@ var _escData = map[string]*_escFile{
 
 	"/rai_config.yml": {
 		local:   "../rai_config.yml",
-		size:    384,
-		modtime: 1490741822,
+		size:    709,
+		modtime: 1490816678,
 		compressed: `
-H4sIAAAAAAAA/3yOT2+6MABA73yK3n/5Wf5MhyRNBop/UAxDJsrFVKhYBrSU4pRPv7jssMt2fXl5eZhz
-SwGgxhWxgMBUIRWm5QNxwa40I8ICD5J3tQJAxipMawt8SQOB6X8uWEFSOUhZpQDQsk6kxAKctbLCrSTi
-5Tf1O3rEnB7fyd0CCNnu1tARCiLNCXd+7xfqeMzJuThErOe5LjPNe5LtrIZatvBqOxFw4i3LmKxHH/Ew
-g+pKuIc8po1vy/5sNzr79zaZNUOzdK7E41FiBMmGr+HuFaEfA7w7lTT942FrTv3Q2y9YketGfoum+uaS
-dBPVybqR4Zo3ff5c7gtaBXe4U6XASbHSXHi4XvYwXobYbMyTmjOmzRZdeIFCLu/O3A80kp5dpHwGAAD/
-/9fuIPKAAQAA
+H4sIAAAJbogA/3yQTa+iSBiF9/4K9mYugoJoQjKAgKD4iaBsbgoooUCooihE/fWTe6c7bS+6t+d98p6T
+BxAyH3BcDSo45yhAA9Cx/CshFN9RCumc+0pGA45LcQVQ/U0RiguYsI/v00eCqwHHJTcEa/aJ0jmnqpp5
+HIuqKs3MTB7m1uJaYhgZ5f5+POFRmxntMukEfeZhO9M2Zf98uU3GguueTh1bRpch6G0FxPvdqaoB0BqX
+Xq4xe2x/1bQwoZC9VYlkm9N8jA9aO8RyLkTTMvEmvbwmVrGWp8NCvOu+Z5PjTCiYvp2I/couSufkG6w5
+daX3FFe8FFSvtSBKl6Tb1T0K4gj1Z59WVNnyWags+cXWNkOjcKS0ScAyd1rPCszQl+xN3At8hR/xpLUm
+6gBWAN1+t/iVZF395vEb+qAA/fNT5/8iW9zRBM45gltWgZZB+u+f0B9PPwFBnyV8vunY+YJ+CLyXV4xm
+MwKvxcXHL5KJLBXcCWutmhfSpVtrEeUN17mFcC33oZTyoxU1L1mIGk9jr6vWiHh4MqxGUm76HbrEj8a7
+aEPWfLBX1bcBpItvKPnLhqOy8A7ueYmLTBxnD38hbvKoM0Z62sljU3mI9vR2LlC1e/LBiFEQFSvB5C/3
+/MyHzgEojRKPMowFa9kdcp4y56nb3k6AydVUB/8FAAD//9otnuDFAgAA
 `,
 	},
 
 	"/": {
 		isDir: true,
-		local: "",
+		local: "/",
 	},
 }
