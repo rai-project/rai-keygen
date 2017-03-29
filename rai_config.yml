@@ -7,7 +7,7 @@ auth:
   client_secret: ==AES32==2pOhrh3oRAs+o6h1Z7kcM4w6LpFjL67+j2vBTMGpS91jtBO42wKGjkIUTCtqUukMy2K/5VmzL125YcuPnwiVbZiwXTrmr8O/gW8H/DOGEWCjI5dqcaHhIsMFVEWT5GNbw1/moxb4sF4=
 email:
   provider: mailgun
-  domain: email.rai-project.com
-  source: postmaster@email.rai-project.com
-  mailgun_active_api_key: ==AES32==PT1BRVMzMj099pefjYTozpg2td1J4tsFn/1dHJnAZr/CJIlWeL6wW5d/0KrEYgWiqMAtzfAq2o+UCFq58lBveJpTZ3PZNpL/VQ==
+  domain: email.webgpu.com
+  source: postmaster@webgpu.com
+  mailgun_active_api_key: ==AES32==PT1BRVMzMj09fkYJRFYxBuH3r6ac7TdWVprwWLM1qsW6YLi0PbIWGBlHA9F5Xq1N9b4DN9sNh9NhQQ0MNesIe7OhvMaHsFfCVw==
   mailgun_email_validation_key: ==AES32==PT1BRVMzMj09S8DMRJXHojg23gxTD2NhZuC0Bdu63E8x2G7lXjimPy/V0traZjK1E/YvhX/WIRa8q8b0goo1FHuRh/rtIyBGMP1ecfE=
