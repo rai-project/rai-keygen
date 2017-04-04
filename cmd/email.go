@@ -95,6 +95,10 @@ var emailKeysCmd = &cobra.Command{
 				return err
 			}
 
+			if err := prof.Create(); err != nil {
+				return err
+			}
+
 			user := prof.Info()
 			profFileContent, err := yaml.Marshal(user)
 			if err != nil {
