@@ -68,6 +68,7 @@ func init() {
 	RootCmd.AddCommand(cmd.EnvCmd)
 	RootCmd.AddCommand(cmd.GendocCmd)
 	RootCmd.AddCommand(cmd.CompletionCmd)
+	RootCmd.AddCommand(cmd.BuildTimeCmd)
 
 	RootCmd.Flags().StringVarP(&username, "username", "u", "", "The username to generate the key for.")
 	RootCmd.Flags().StringVarP(&email, "email", "e", "", "The email to generate the key for.")
