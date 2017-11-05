@@ -9,6 +9,12 @@ addons:
     - sourceline: ppa:masterminds/glide
     packages:
     - glide
+
+cache:
+  directories:
+    - $HOME/.glide/cache
+before_cache:  # glide touches ORIG_HEAD on `glide install`
+  - find $HOME/.glide/cache -name ORIG_HEAD -exec rm {} \;
 install:
 - gem install fpm
 - glide install --force
