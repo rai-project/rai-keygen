@@ -1,0 +1,99 @@
+project_name: rai-keygen
+builds:
+  -
+    binary: rai-keygen
+    env:
+      - CGO_ENABLED=1
+    goos:
+      - linux
+      - darwin
+      - windows
+    goarch:
+      - 386
+      - amd64
+      - arm
+      - arm64
+      - ppc64le
+    ignore:
+      - goos: darwin
+        goarch: arm
+      - goos: darwin
+        goarch: arm64
+      - goos: linux
+        goarch: arm
+        goarm: 7
+    # Custom ldflags template.
+    # This is parsed with the Go template engine and the following variables
+    # are available:
+    # - Date
+    # - Commit
+    # - Tag
+    # - Version (Git tag without `v` prefix)
+    # Date format is `2006-01-02_15:04:05`.
+    # Default is `-s -w -X main.version={{.Version}} -X main.commit={{.Commit}} -X main.date={{.Date}}`.
+    ldflags: >
+      -s -w
+      -extldflags \"-static\"
+      -X main.Version={{.Version}}
+      -X main.GitCommit={{.Commit}}
+      -X main.GitTag={{.Tag}}
+      -X main.BuildDate={{.Date}}
+      -X main.AppSecret=${APP_SECRET}
+checksum:
+  name_template: '{{ .ProjectName }}_checksums.txt'
+changelog:
+  sort: asc
+  filters:
+    exclude:
+      - docs
+      - Merge pull request
+      - Merge branch
+archive:
+  name_template: '{{ .ProjectName }}_{{ .Os }}_{{ .Arch }}{{ if .Arm }}v{{ .Arm }}{{ end }}'
+  replacements:
+    darwin: macOS
+    linux: Linux
+    windows: Windows
+    386: i386
+    amd64: x86_64
+  format_overrides:
+    - goos: windows
+      format: zip
+  files:
+    - LICENSE.TXT
+snapshot:
+  # Allows you to change the name of the generated snapshot
+  # releases. The following variables are available:
+  # - Commit
+  # - Tag
+  # - Timestamp
+  # Default is `SNAPSHOT-{{.Commit}}`.
+  name_template: SNAPSHOT-{{.Commit}}
+brew:
+  github:
+    owner: goreleaser
+    name: homebrew-tap
+  folder: Formula
+  homepage:  http://goreleaser.github.io
+  description: Deliver Go binaries as fast and easily as possible
+  test: |
+    system "#{bin}/goreleaser -v"
+fpm:
+  homepage:  http://goreleaser.github.io
+  description: Deliver Go binaries as fast and easily as possible
+  maintainer: Carlos Alexandro Becker <root@carlosbecker.com>
+  license: MIT
+  vendor: GoReleaser
+  formats:
+    - deb
+    - rpm
+  dependencies:
+    - git
+snapcraft:
+  summary: Deliver Go binaries as fast and easily as possible
+  description: |
+    GoReleaser builds Go binaries for several platforms, creates a GitHub
+    release and then pushes a Homebrew formula to a repository. All that
+    wrapped in your favorite CI.
+  grade: stable
+  confinement: classic

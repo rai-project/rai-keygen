@@ -10,6 +10,7 @@ var (
 	GitBranch  string
 	GitState   string
 	GitSummary string
+	GitTag     string
 )
 
 func init() {
