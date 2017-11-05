@@ -69,31 +69,31 @@ snapshot:
   # - Timestamp
   # Default is `SNAPSHOT-{{.Commit}}`.
   name_template: SNAPSHOT-{{.Commit}}
-brew:
-  github:
-    owner: goreleaser
-    name: homebrew-tap
-  folder: Formula
-  homepage:  http://goreleaser.github.io
-  description: Deliver Go binaries as fast and easily as possible
-  test: |
-    system "#{bin}/goreleaser -v"
-fpm:
-  homepage:  http://goreleaser.github.io
-  description: Deliver Go binaries as fast and easily as possible
-  maintainer: Carlos Alexandro Becker <root@carlosbecker.com>
-  license: MIT
-  vendor: GoReleaser
-  formats:
-    - deb
-    - rpm
-  dependencies:
-    - git
-snapcraft:
-  summary: Deliver Go binaries as fast and easily as possible
-  description: |
-    GoReleaser builds Go binaries for several platforms, creates a GitHub
-    release and then pushes a Homebrew formula to a repository. All that
-    wrapped in your favorite CI.
-  grade: stable
-  confinement: classic
+# brew:
+#   github:
+#     owner: rai-project
+#     name: homebrew-tap
+#   folder: Formula
+#   homepage:  http://rai-project.com
+#   description: Key generator for rai
+#   test: |
+#     system "#{bin}/rai-keygen -v"
+# fpm:
+#   homepage:  http://goreleaser.github.io
+#   description: Deliver Go binaries as fast and easily as possible
+#   maintainer: Carlos Alexandro Becker <root@carlosbecker.com>
+#   license: MIT
+#   vendor: GoReleaser
+#   formats:
+#     - deb
+#     - rpm
+#   dependencies:
+#     - git
+# snapcraft:
+#   summary: Deliver Go binaries as fast and easily as possible
+#   description: |
+#     GoReleaser builds Go binaries for several platforms, creates a GitHub
+#     release and then pushes a Homebrew formula to a repository. All that
+#     wrapped in your favorite CI.
+#   grade: stable
+#   confinement: classic
