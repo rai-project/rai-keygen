@@ -30,7 +30,7 @@ script:
 - goreleaser --snapshot --skip-publish --skip-validate --config <(sed -e "s/\${APP_SECRET}/${APP_SECRET}/" .goreleaser.yml)
 before_deploy:
 - echo "go-selfupdate generating bindiffs"
-- ls -l
+- ls -l dist
 deploy:
   provider: s3
   access_key_id: AKIAIAFSJLCCOYB5V3EQ
