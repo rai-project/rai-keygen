@@ -90,6 +90,7 @@ var emailKeysCmd = &cobra.Command{
 				auth.Username(record[2]),
 				auth.Email(record[3]),
 				auth.Affiliation(record[4]),
+				auth.TeamName("your-teamname-here"),
 			)
 			if err != nil {
 				return err
