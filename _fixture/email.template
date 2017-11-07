@@ -13,7 +13,7 @@ Do not share your keys with other users or teams. The access and secret key is u
 If you have any questions or unsure how your ~/.rai_profile file should look, please contact your TA or post to Piazza. Also, before Friday, you will need to settle on a common team name with your team and fill it in your .rai_profile. 
 Your team name, along with an access/secret key from one of your team members will be used for the final project submission.
 
-The project README (https://github.com/webgpu/2017fa_ece408_project) has been update with a description of how to get the RAI client and use it for your development. It also includes information on how to launch and profile jobs, as well as how to configure the commands invoked by your job. Please read this carefully and, again, the teaching assistants will be able to assist you if you have issues running your project. If emailing the TA with a problem, then please include the output of
+The project README (https://github.com/webgpu/2017fa_ece408_project) has been updated with a description of how to get the RAI client and use it for your development. It also includes information on how to launch and profile jobs, as well as how to configure the commands invoked by your job. Please read this carefully and, again, the teaching assistants will be able to assist you if you have issues running your project. If emailing the TA with a problem, then please include the output of
 
   rai version
 
