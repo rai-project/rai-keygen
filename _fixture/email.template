@@ -10,9 +10,10 @@ The RAI system requires some authentication tokens to be present in your $HOME/.
 
 Do not share your keys with other users or teams. The access and secret key is used to authenticate you with the server. Both the team name and the username are used to identify you to the system.
 
-If you have any questions or unsure how your ~/.rai_profile file should look, please contact your TA or post to Piazza. Also, within the next 2 weeks, you will need to contact the TA and tell them your team name. Your team name, along with an access/secret key from one of your team members will be used for the final project submission.
+If you have any questions or unsure how your ~/.rai_profile file should look, please contact your TA or post to Piazza. Also, before Friday, you will need to settle on a common team name with your team and fill it in your .rai_profile. 
+Your team name, along with an access/secret key from one of your team members will be used for the final project submission.
 
-The README file (https://github.com/rai-project/rai) has been updated with a description of how to get the RAI client and use it for your development. It also includes information on how to launch and profile jobs, as well as how to configure the commands invoked by your job. Please read this carefully and, again, the teaching assistants will be able to assist you if you have issues running your project. If emailing the TA with a problem, then please include the output of
+The project README (https://github.com/webgpu/2017fa_ece408_project) has been update with a description of how to get the RAI client and use it for your development. It also includes information on how to launch and profile jobs, as well as how to configure the commands invoked by your job. Please read this carefully and, again, the teaching assistants will be able to assist you if you have issues running your project. If emailing the TA with a problem, then please include the output of
 
   rai version
 
@@ -24,7 +25,9 @@ you can also invoke the rai command with verbose and debug outputs using
 
   rai --verbose --debug
 
-For the final submission, we are currently working on a script that would submit your job as well as notify the teaching assistants. That information will be available as soon as possible. Regardless, you will need the above credentials to make your final submission.
+You can invoke a final submission with
+
+  rai --submit
 
 Thank you,
 
