@@ -34,6 +34,6 @@ var getKeyCmd = &cobra.Command{
 }
 
 func init() {
-	getKeyCmd.Flags().StringVarP(&email, "email", "e", "", "The email to get the key for.")
+	getKeyCmd.Flags().StringVarP(&email, "email", "e", "", "The email to fetch the key for.")
 	RootCmd.AddCommand(getKeyCmd)
 }
