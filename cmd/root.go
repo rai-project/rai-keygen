@@ -19,6 +19,7 @@ var (
 	email     string
 	firstname string
 	lastname  string
+	teamname  string
 	appSecret string
 	isColor   bool
 	isVerbose bool
@@ -39,7 +40,8 @@ var RootCmd = &cobra.Command{
 			auth.Username(username),
 			auth.Email(email),
 			auth.Firstname(firstname),
-			auth.Lastname(lastname))
+			auth.Lastname(lastname),
+			auth.TeamName(teamname))
 		if err != nil {
 			return err
 		}
@@ -74,6 +76,7 @@ func init() {
 	RootCmd.Flags().StringVarP(&email, "email", "e", "", "The email to generate the key for.")
 	RootCmd.Flags().StringVarP(&firstname, "firstname", "f", "", "The firstname to generate the key for.")
 	RootCmd.Flags().StringVarP(&lastname, "lastname", "l", "", "The lastname to generate the key for.")
+	RootCmd.Flags().StringVarP(&teamname, "teamname", "t", "", "The team name associated with the key.")
 
 	RootCmd.PersistentFlags().StringVarP(&appSecret, "secret", "s", "", "The application secret key.")
 	RootCmd.PersistentFlags().BoolVarP(&isColor, "color", "c", !color.NoColor, "Toggle color output.")
