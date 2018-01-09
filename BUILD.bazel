@@ -1,0 +1,51 @@
+load("@io_bazel_rules_go//go/private:rules/info.bzl", "go_info")
+load("@io_bazel_rules_go//go:def.bzl", "go_binary", "go_prefix", "go_library")
+load("@bazel_gazelle//:def.bzl", "gazelle")
+
+go_prefix("github.com/rai-project/rai-keygen")
+
+gazelle(
+    name = "gazelle",
+    external = "vendored",
+    prefix = "github.com/rai-project/rai-keygen",
+)
+
+gazelle(
+    name = "gazelle_fix",
+    command = "fix",
+    external = "vendored",
+    prefix = "github.com/rai-project/rai-keygen",
+)
+
+exports_files([
+    "LICENSE.TXT",
+    "rai_config.yml",
+])
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "main.go",
+        "secret.go",
+        "version.go",
+    ],
+    importpath = "github.com/rai-project/rai-keygen",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//cmd:go_default_library",
+        "//vendor/github.com/rai-project/config:go_default_library",
+    ],
+)
+
+go_binary(
+    name = "rai-keygen",
+    embed = [":go_default_library"],
+    importpath = "github.com/rai-project/rai-keygen",
+    static = "on",
+    visibility = ["//visibility:public"],
+    x_defs = {
+        "main.AppSecret": "${APP_SECRET}",
+    },
+)
+
+go_info()
