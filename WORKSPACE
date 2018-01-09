@@ -14,6 +14,7 @@ git_repository(
 
 git_repository(
     name = "build_tools",
+    commit = "72c03d74aab4cbe9fe6860f6d5571f2aa292e47c",
     remote = "https://github.com/rai-project/build_tools",
 )
 
