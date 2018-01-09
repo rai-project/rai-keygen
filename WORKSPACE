@@ -12,10 +12,15 @@ git_repository(
     remote = "https://github.com/bazelbuild/bazel-gazelle",
 )
 
+git_repository(
+    name = "build_tools",
+    remote = "https://github.com/rai-project/build_tools",
+)
+
 load("@io_bazel_rules_go//go:def.bzl", "go_rules_dependencies", "go_register_toolchains", "go_repository")
 load("@io_bazel_rules_go//proto:def.bzl", "proto_register_toolchains")
 load("@bazel_gazelle//:deps.bzl", "gazelle_dependencies")
-load("//:esc.bzl", "esc_repositories")
+load("@build_tools//:esc.bzl", "esc_repositories")
 
 go_rules_dependencies()
 

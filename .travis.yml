@@ -17,7 +17,7 @@ before_cache:  # glide touches ORIG_HEAD on `glide install`
   - find $HOME/.glide/cache -name ORIG_HEAD -exec rm {} \;
 install:
 - gem install fpm
-- glide install --force --debug
+- glide --debug install --force 
 - rm -fr vendor/github.com/Sirupsen
 - find vendor -type f -exec sed -i 's/Sirupsen/sirupsen/g' {} +
 - go get github.com/mjibson/esc
