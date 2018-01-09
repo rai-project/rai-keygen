@@ -27,7 +27,7 @@ after_success:
 - test -n "$TRAVIS_TAG" && curl -sL https://git.io/goreleaser | bash
 script:
 - cd ${TRAVIS_BUILD_DIR}/cmd && go generate && cd ${TRAVIS_BUILD_DIR}
-- goreleaser --snapshot --skip-publish --skip-validate --config <(sed -e "s/\${APP_SECRET}/${APP_SECRET}/" .goreleaser.yml)
+- goreleaser --snapshot --skip-publish --skip-validate --rm-dist --config <(sed -e "s/\${APP_SECRET}/${APP_SECRET}/" .goreleaser.yml)
 before_deploy:
 - echo "go-selfupdate generating bindiffs"
 - ls -l dist
