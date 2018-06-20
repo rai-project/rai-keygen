@@ -552,19 +552,19 @@
   version = "v1.0.0"
 
 [[projects]]
-  name = "gopkg.in/hlandau/easymetric.v1"
+  name = "github.com/rai-project/easymetric.v1"
   packages = ["cexp"]
   revision = "1c173222e345c2ba115e0f483821c6da2d3b0fa9"
   version = "v1.0.0"
 
 [[projects]]
-  name = "gopkg.in/hlandau/measurable.v1"
+  name = "github.com/rai-project/measurable.v1"
   packages = ["."]
   revision = "d96a009bd9bda94dd1294105e67e8c1794e533d3"
   version = "v1.0.1"
 
 [[projects]]
-  name = "gopkg.in/hlandau/passlib.v1"
+  name = "github.com/rai-project/passlib"
   packages = [
     ".",
     "abstract",
