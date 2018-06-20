@@ -17,6 +17,7 @@ before_cache:  # glide touches ORIG_HEAD on `glide install`
   - find $HOME/.glide/cache -name ORIG_HEAD -exec rm {} \;
 install:
 - go get github.com/tools/godep
+- go get -u github.com/golang/dep/cmd/dep
 - gem install fpm
 - glide --debug install --force
 - rm -fr vendor/github.com/Sirupsen
