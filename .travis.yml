@@ -28,6 +28,7 @@ install:
 - cd $GOPATH/src/github.com/goreleaser/goreleaser
 - dep ensure -vendor-only
 - make setup build
+- go install
 - cd ${TRAVIS_BUILD_DIR}
 after_success:
 - test -n "$TRAVIS_TAG" && curl -sL https://git.io/goreleaser | bash
