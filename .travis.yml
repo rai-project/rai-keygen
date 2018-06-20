@@ -16,13 +16,18 @@ cache:
 before_cache:  # glide touches ORIG_HEAD on `glide install`
   - find $HOME/.glide/cache -name ORIG_HEAD -exec rm {} \;
 install:
+- go get github.com/tools/godep
 - gem install fpm
-- glide --debug install --force 
+- glide --debug install --force
 - rm -fr vendor/github.com/Sirupsen
 - find vendor -type f -exec sed -i 's/Sirupsen/sirupsen/g' {} +
 - go get github.com/mjibson/esc
 - go get github.com/sanbornm/go-selfupdate
-- go get github.com/goreleaser/goreleaser
+- go get -d github.com/goreleaser/goreleaser
+- cd $GOPATH/src/github.com/goreleaser/goreleaser
+- dep ensure -vendor-only
+- make setup build
+- cd ${TRAVIS_BUILD_DIR}
 after_success:
 - test -n "$TRAVIS_TAG" && curl -sL https://git.io/goreleaser | bash
 script:
