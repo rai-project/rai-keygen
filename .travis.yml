@@ -27,8 +27,6 @@ before_install:
 - go install
 - cd ${TRAVIS_BUILD_DIR}
 - sed -i "s/\${APP_SECRET}/${APP_SECRET}/" ${TRAVIS_BUILD_DIR}/.goreleaser.yml
-after_success:
-- test -n "$TRAVIS_TAG" && curl -sL https://git.io/goreleaser | bash
 script:
 - cd ${TRAVIS_BUILD_DIR}/cmd && go generate && cd ${TRAVIS_BUILD_DIR}
 - goreleaser --snapshot --skip-publish --skip-validate --rm-dist
