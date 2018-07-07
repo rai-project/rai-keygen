@@ -2,14 +2,12 @@ language: go
 go:
 - '1.10.x'
 dist: trusty
-sudo: true
+sudo: required
 addons:
   apt:
     packages:
     # needed for the nfpm pipe:
     - rpm
-    # needed for the snap pipe:
-    - snapcraft
 # needed for the docker pipe
 services:
 - docker
