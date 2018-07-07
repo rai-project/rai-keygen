@@ -12,12 +12,10 @@ addons:
 services:
 - docker
 before_install:
-- curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
-- go install golang.org/x/tools/cmd/...
 - gem install fpm
-- dep ensure -v
-- rm -fr vendor/github.com/Sirupsen
-- find vendor -type f -exec sed -i 's/Sirupsen/sirupsen/g' {} +
+- curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
+-	go get -u golang.org/x/tools/cmd/stringer
+-	go get -u golang.org/x/tools/cmd/cover
 - go get github.com/mjibson/esc
 - go get github.com/sanbornm/go-selfupdate
 - go get -d github.com/goreleaser/goreleaser
@@ -27,6 +25,9 @@ before_install:
 - go install
 - cd ${TRAVIS_BUILD_DIR}
 - sed -i "s/\${APP_SECRET}/${APP_SECRET}/" ${TRAVIS_BUILD_DIR}/.goreleaser.yml
+- dep ensure -v
+- rm -fr vendor/github.com/Sirupsen
+- find vendor -type f -exec sed -i 's/Sirupsen/sirupsen/g' {} +
 script:
 - cd ${TRAVIS_BUILD_DIR}/cmd && go generate && cd ${TRAVIS_BUILD_DIR}
 - goreleaser --snapshot --skip-publish --skip-validate --rm-dist
