@@ -37,6 +37,7 @@ before_deploy:
 - rm -fr dist
 deploy:
 - provider: script
+  snapshot: true
   skip_cleanup: true
   skip_validate: true
   rm_dist: true
