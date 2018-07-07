@@ -30,9 +30,6 @@ before_install:
 - go get -d github.com/goreleaser/goreleaser
 - cd $GOPATH/src/github.com/goreleaser/goreleaser
 - dep ensure -vendor-only -v
-- make setup build
-- go install
-- cd ${TRAVIS_BUILD_DIR}
 before_deploy:
 - sed -e "s/\${APP_SECRET}/${APP_SECRET}/" .goreleaser.yml
 deploy:
