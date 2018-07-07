@@ -14,8 +14,8 @@ services:
 before_install:
 - gem install fpm
 - curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
--	go get -u golang.org/x/tools/cmd/stringer
--	go get -u golang.org/x/tools/cmd/cover
+- go get -u golang.org/x/tools/cmd/stringer
+- go get -u golang.org/x/tools/cmd/cover
 - go get github.com/mjibson/esc
 - go get github.com/sanbornm/go-selfupdate
 - go get -d github.com/goreleaser/goreleaser
