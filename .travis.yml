@@ -3,20 +3,13 @@ go:
 - '1.10.x'
 dist: trusty
 sudo: false
-addons:
-  apt:
-    sources:
-    - sourceline: ppa:masterminds/glide
-    packages:
-    - glide
-
 cache:
   directories:
     - $HOME/.glide/cache
 before_cache:  # glide touches ORIG_HEAD on `glide install`
   - find $HOME/.glide/cache -name ORIG_HEAD -exec rm {} \;
-install:
-- go get github.com/tools/godep
+before_install:
+- curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
 - go get -u github.com/golang/dep/cmd/dep
 - gem install fpm
 - glide --debug install --force
@@ -26,7 +19,7 @@ install:
 - go get github.com/sanbornm/go-selfupdate
 - go get -d github.com/goreleaser/goreleaser
 - cd $GOPATH/src/github.com/goreleaser/goreleaser
-- dep ensure -vendor-only
+- dep ensure -vendor-only -v
 - make setup build
 - go install
 - cd ${TRAVIS_BUILD_DIR}
