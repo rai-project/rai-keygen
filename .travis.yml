@@ -32,11 +32,13 @@ script:
 - goreleaser --snapshot --skip-publish --skip-validate --rm-dist
 before_deploy:
 - echo "go-selfupdate generating bindiffs"
-- ls -l dist
+- ls -l dist/
+- rm -fr dist
 deploy:
 - provider: script
   skip_cleanup: true
   rm_dist: true
+  verbose: true
   script: curl -sL https://git.io/goreleaser | bash
   on:
     tags: true
