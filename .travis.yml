@@ -42,7 +42,7 @@ deploy:
   skip_validate: true
   rm_dist: true
   verbose: true
-  script: curl -sL https://git.io/goreleaser | bash /dev/stdin --snapshot
+  script: goreleaser --snapshot --skip-publish --skip-validate --rm-dist
   on:
     tags: true
     condition: $TRAVIS_OS_NAME = linux
