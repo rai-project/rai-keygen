@@ -30,8 +30,9 @@ before_install:
 - go get -d github.com/goreleaser/goreleaser
 - cd $GOPATH/src/github.com/goreleaser/goreleaser
 - dep ensure -vendor-only -v
-before_deploy:
 - sed -e "s/\${APP_SECRET}/${APP_SECRET}/" .goreleaser.yml
+install:
+- go build -v
 deploy:
 - provider: script
   skip_cleanup: true
