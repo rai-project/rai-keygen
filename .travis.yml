@@ -34,7 +34,6 @@ script:
 before_deploy:
 - echo "go-selfupdate generating bindiffs"
 - ls -l dist/
-- rm -fr dist
 deploy:
 - provider: script
   snapshot: true
