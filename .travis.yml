@@ -23,11 +23,18 @@ before_install:
 - go get -d github.com/goreleaser/goreleaser
 - cd $GOPATH/src/github.com/goreleaser/goreleaser
 - dep ensure -vendor-only -v
-- sed -e "s/\${APP_SECRET}/${APP_SECRET}/" .goreleaser.yml
-install:
-- echo "skip install"
+- make setup build
+- go install
+- cd ${TRAVIS_BUILD_DIR}
+- sed -e "s/\${APP_SECRET}/${APP_SECRET}/" ${TRAVIS_BUILD_DIR}/.goreleaser.yml
+after_success:
+- test -n "$TRAVIS_TAG" && curl -sL https://git.io/goreleaser | bash
 script:
-- go build -v
+- cd ${TRAVIS_BUILD_DIR}/cmd && go generate && cd ${TRAVIS_BUILD_DIR}
+- goreleaser --snapshot --skip-publish --skip-validate --rm-dist
+before_deploy:
+- echo "go-selfupdate generating bindiffs"
+- ls -l dist
 deploy:
 - provider: script
   skip_cleanup: true
