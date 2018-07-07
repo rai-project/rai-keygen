@@ -11,22 +11,13 @@ addons:
 # needed for the docker pipe
 services:
 - docker
-
 before_install:
-- gem install --no-ri --no-rdoc fpm
+- gem install fpm
 - curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
 -	go get -u golang.org/x/tools/cmd/stringer
 -	go get -u golang.org/x/tools/cmd/cover
 - go get github.com/mjibson/esc
-- go get github.com/ahmetb/govvv
-- go get github.com/mitchellh/gox
-- go get github.com/tcnksm/ghr
 - go get github.com/sanbornm/go-selfupdate
-- go get github.com/laher/bump/...
-- go get github.com/gordonklaus/ineffassign
-- go get github.com/client9/misspell/cmd/misspell
-- go get -u github.com/goreleaser/nfpm/...
-- go get github.com/aktau/github-release
 - go get -d github.com/goreleaser/goreleaser
 - cd $GOPATH/src/github.com/goreleaser/goreleaser
 - dep ensure -vendor-only -v
@@ -47,6 +38,7 @@ before_deploy:
 deploy:
 - provider: script
   skip_cleanup: true
+  skip_validate: true
   rm_dist: true
   verbose: true
   script: curl -sL https://git.io/goreleaser | bash
