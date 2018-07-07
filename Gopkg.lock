@@ -20,6 +20,15 @@
   version = "v1"
 
 [[projects]]
+  name = "github.com/airbrake/gobrake"
+  packages = [
+    ".",
+    "internal/lrucache"
+  ]
+  revision = "46cf8d6b67a66a18e50a082ebcf684756e262d6c"
+  version = "v3.6.0"
+
+[[projects]]
   branch = "master"
   name = "github.com/armon/consul-api"
   packages = ["."]
@@ -58,8 +67,8 @@
     "service/kinesis",
     "service/sts"
   ]
-  revision = "e4805606f5138247510183050abe642344275ebd"
-  version = "v1.14.10"
+  revision = "16cb9f62f8a8b7af4f38725567f5ce762e1d562b"
+  version = "v1.14.21"
 
 [[projects]]
   name = "github.com/cenkalti/backoff"
@@ -271,25 +280,25 @@
     "provider",
     "secret"
   ]
-  revision = "8efd37abd8e1207a61072aa1a842178e02f86b80"
+  revision = "13c092cd1cd1848384006b4adb42cd6a58f3a095"
 
 [[projects]]
   branch = "master"
   name = "github.com/rai-project/aws"
   packages = ["."]
-  revision = "deb7e58459467392822a2822f2e193f9ccfdd68f"
+  revision = "9eea5368fb295cd4c9d508b23387e5b1ae86f5e9"
 
 [[projects]]
   branch = "master"
   name = "github.com/rai-project/cmd"
   packages = ["."]
-  revision = "57557a3a26d338305c69ccb710e6a8f2e04f7a5f"
+  revision = "ac7ba16b7ebcdbfda9ac9a4eb3b96ea981a6eb63"
 
 [[projects]]
   branch = "master"
   name = "github.com/rai-project/config"
   packages = ["."]
-  revision = "c84109ab2515e922a25930ea437d20d2e86d1840"
+  revision = "b8a1f9848ca2a4288fa28f2f456ea4683069566a"
 
 [[projects]]
   branch = "master"
@@ -298,7 +307,7 @@
     ".",
     "mongodb"
   ]
-  revision = "8a7494ad0e9400e329b9300159385a98904a8ea4"
+  revision = "d45ec3f8f60e1bb3f80e1ac00b302ef4ecb3fd36"
 
 [[projects]]
   branch = "master"
@@ -307,7 +316,7 @@
     ".",
     "mailgun"
   ]
-  revision = "b5330b617990d826666ebcf3ad39fba7f5abdf5d"
+  revision = "79d9958d49f44abad3357432d02b578f00ddf8c9"
 
 [[projects]]
   branch = "master"
@@ -319,7 +328,7 @@
   branch = "master"
   name = "github.com/rai-project/googlecloud"
   packages = ["."]
-  revision = "2e9c67044c5b0e884a6330792cd3c5a363c031bd"
+  revision = "f07efb16d0e1764f3935e85420f065d8416c1c86"
 
 [[projects]]
   branch = "master"
@@ -329,13 +338,13 @@
     "hooks",
     "hooks/logruzio"
   ]
-  revision = "87ef1d21520e8fc2ba204a431318d27a6606ca0a"
+  revision = "127c980833b2e3f43e5cb8cfb669d9a8060a89ce"
 
 [[projects]]
   branch = "master"
   name = "github.com/rai-project/model"
   packages = ["."]
-  revision = "0150e73aa818eb775f2562d6de4130fed9a09382"
+  revision = "e095c0b749b3017aca3e11a3eb6cbbc623d7978b"
 
 [[projects]]
   branch = "master"
@@ -352,25 +361,25 @@
     "hash/sha2crypt",
     "hash/sha2crypt/raw"
   ]
-  revision = "fcc24e13ee5682d3e6499a720dcc043378fa2adb"
+  revision = "d8fc10d54a26dc0287e013edf727fe8171175d11"
 
 [[projects]]
   branch = "master"
   name = "github.com/rai-project/utils"
   packages = ["."]
-  revision = "1660f4e6c5178a88d71a942ca6e5a5796e035c4e"
+  revision = "7cc954f4f45db4d1af4ad4ff449accedc68f5774"
 
 [[projects]]
   branch = "master"
   name = "github.com/rai-project/uuid"
   packages = ["."]
-  revision = "9d1dfc0fdb4f216bcbe4349da0997301f1123e29"
+  revision = "4745e418073472528c60eb77ec47724a04b23fd8"
 
 [[projects]]
   branch = "master"
   name = "github.com/rai-project/vipertags"
   packages = ["."]
-  revision = "1b2055ebed224c84d28b34112454ba8b7cc4d491"
+  revision = "92806c8ec658b5bc4ef66f6e51f835937a9e616e"
 
 [[projects]]
   name = "github.com/russross/blackfriday"
@@ -421,7 +430,7 @@
     ".",
     "doc"
   ]
-  revision = "1e58aa3361fd650121dceeedc399e7189c05674a"
+  revision = "a114f312e075f65bf30d6d9a1430113f857e543b"
 
 [[projects]]
   branch = "master"
@@ -453,7 +462,8 @@
 [[projects]]
   name = "github.com/ugorji/go"
   packages = ["codec"]
-  revision = "bdcc60b419d136a85cdf2e7cbcac34b3f1cd6e57"
+  revision = "b4c50a2b199d93b13dc15e78929cfb23bfdf21ab"
+  version = "v1.1.1"
 
 [[projects]]
   branch = "master"
@@ -501,7 +511,7 @@
     "context",
     "context/ctxhttp"
   ]
-  revision = "afe8f62b1d6bbd81f31868121a50b06d8188e1f9"
+  revision = "32a936f46389aa10549d60bd7833e54b01685d09"
 
 [[projects]]
   branch = "master"
@@ -523,7 +533,7 @@
     "unix",
     "windows"
   ]
-  revision = "ad87a3a340fa7f3bed189293fbfa7a9b7e021ae1"
+  revision = "3c6ecd8f22c6f40fbeec94c000a069d7d87c7624"
 
 [[projects]]
   name = "golang.org/x/text"
@@ -548,7 +558,7 @@
     "googleapi/internal/uritemplates",
     "logging/v2"
   ]
-  revision = "3639d6d93f377f39a1de765fa4ef37b3c7ca8bd9"
+  revision = "61180b1196c9b6bec3ea78396c7805bdc117dcdc"
 
 [[projects]]
   name = "google.golang.org/appengine"
@@ -566,6 +576,17 @@
   ]
   revision = "b1f26356af11148e710935ed1ac8a7f5702c7612"
   version = "v1.1.0"
+
+[[projects]]
+  name = "gopkg.in/gemnasium/logrus-airbrake-hook.v3"
+  packages = ["."]
+  revision = "cb25691e43299559827ffb285b0bb5626b722fa7"
+
+[[projects]]
+  name = "gopkg.in/gemnasium/logrus-graylog-hook.v2"
+  packages = ["."]
+  revision = "c4a7de647eaaac00ffea599b7773e5e6804fa3b7"
+  version = "v2.0.7"
 
 [[projects]]
   name = "gopkg.in/hlandau/easymetric.v1"
@@ -595,7 +616,7 @@
     "internal/sasl",
     "internal/scram"
   ]
-  revision = "3f83fa5005286a7fe593b055f0d7771a7dce4655"
+  revision = "9856a29383ce1c59f308dd1cf0363a79b5bef6b5"
 
 [[projects]]
   name = "gopkg.in/yaml.v2"
