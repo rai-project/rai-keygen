@@ -11,8 +11,6 @@ addons:
 # needed for the docker pipe
 services:
 - docker
-before_cache:  # glide touches ORIG_HEAD on `glide install`
-  - find $HOME/.glide/cache -name ORIG_HEAD -exec rm {} \;
 before_install:
 - curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
 - go install golang.org/x/tools/cmd/...
