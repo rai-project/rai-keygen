@@ -30,7 +30,7 @@ before_install:
 - find vendor -type f -exec sed -i 's/Sirupsen/sirupsen/g' {} +
 script:
 - cd ${TRAVIS_BUILD_DIR}/cmd && go generate && cd ${TRAVIS_BUILD_DIR}
-- goreleaser --snapshot --skip-publish --skip-validate --rm-dist --verbose
+- goreleaser --snapshot --skip-publish --skip-validate --rm-dist --debug
 before_deploy:
 - echo "go-selfupdate generating bindiffs"
 - ls -l dist/
@@ -41,7 +41,7 @@ deploy:
   skip_validate: true
   rm_dist: true
   verbose: true
-  script: goreleaser --snapshot --skip-validate --rm-dist --verbose
+  script: goreleaser --snapshot --skip-validate --rm-dist --debug
   on:
     tags: true
     condition: $TRAVIS_OS_NAME = linux
