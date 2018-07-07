@@ -2,7 +2,17 @@ language: go
 go:
 - '1.10.x'
 dist: trusty
-sudo: false
+sudo: true
+addons:
+  apt:
+    packages:
+    # needed for the nfpm pipe:
+    - rpm
+    # needed for the snap pipe:
+    - snapcraft
+# needed for the docker pipe
+services:
+- docker
 cache:
   directories:
     - $HOME/.glide/cache
@@ -23,16 +33,16 @@ before_install:
 - make setup build
 - go install
 - cd ${TRAVIS_BUILD_DIR}
-after_success:
-- test -n "$TRAVIS_TAG" && curl -sL https://git.io/goreleaser | bash
-script:
-- cd ${TRAVIS_BUILD_DIR}/cmd && go generate && cd ${TRAVIS_BUILD_DIR}
-- goreleaser --snapshot --skip-publish --skip-validate --rm-dist --config <(sed -e "s/\${APP_SECRET}/${APP_SECRET}/" .goreleaser.yml)
 before_deploy:
-- echo "go-selfupdate generating bindiffs"
-- ls -l dist
+- sed -e "s/\${APP_SECRET}/${APP_SECRET}/" .goreleaser.yml
 deploy:
-  provider: s3
+- provider: script
+  skip_cleanup: true
+  script: curl -sL https://git.io/goreleaser | bash
+  on:
+    tags: true
+    condition: $TRAVIS_OS_NAME = linux
+- provider: s3
   access_key_id: AKIAIAFSJLCCOYB5V3EQ
   secret_access_key:
     secure: Atz9WGVPBu7pyIE/Lc/tfri5oVMy+cOLtzopog3VFAViBbDBse4pxi6MNEzQqRBk7vTBPMmDqkIOftz+ml/B4GP5EN2G4hJBFTNdvzURDfYvdUGKZHQJztc5RWuF1su5EVOUm/r9y8Yb39j+7Qv4hHOfQtfot3bjyscZtUGDwOnxcTB0kevits5xzaOOqX+n5YY73I8xC/NedoYfHNjEMmCxAujPOQLmn/etlxt8sGROFDHRxGgUhRIggb2O7DjzJNtcO/33seg2YoYq3u5H9rw/IE6HHBxlqw0JsH9qoiHMGqNmllRPllSdZSXMupBBuPhn9f8sd2BKJZIuCMdNvItjvZAKsfZsVHpWL6+S4xgmA2P3sYSE9e9Skos8xjB/np9X/b3oSkK4d2TUjMStkqvH8wJ+PYiDeU4IJf+NbtJ7fLRYK9u5cCRJC3ng9iTEMfFEgO2FBahBkohyB9JuMDsKeQrlJH+xXP4zS7w+B1uLiX+286nOYUu3aNCuapPFKWlBb8soGivaUakYafxT4mJ0ihS9LSdwtD2Mgbbij+TC4Z/n+OFJ7SAed1nF5XyTJuLWcp4thoeGEbq9pULkFX9PMoobqzFZZuL+bL9EHkhYx6dY8ze+Q6y0ROjY3R884BY/MgM8nm7nsE66uP5p0TLOuANMQRZo+iVH9kQgGqI=
@@ -46,4 +56,6 @@ deploy:
     repo: rai-project/rai-keygen
 env:
   global:
+    # needed for the snap pipe:
+    - PATH=/snap/bin:$PATH
     secure: Dm8M/1ldHrcBCHli9XzzpMLQbfMYqt6Qtk61tD+ZcfzErmU+bLhRUOAP/pR1VZ9Lii7fn4GAq96cbwp05IGgx0lYJdZEsAVVVBrdxChK2Nh5EC1j4eMhrqpuKI3BMdIqragroqc3MTESM6xz+wWcyKh5EnhSgP6OYvxg6wFLl+bXP4hhaqeyMV43XKQ2elYtz3N96Cu+Fgkmaasyty4lo2fZx6urP1hUHCEnwL+a11M4yASyPUuw2OwMQJ2GNWCtycB+t9CSZqVLmtSn7Izl/7fAdexYhfinXDUHcx3kgDrlPrG0orXWIhy3VRWhhMrXGzdHu/8Xn96B6Esk2omkLuzJxsQ/e0fOMOrdtpXzohFcOdkJWwqvy8WZK0XbWzPOVMWu8+biS/qh3wUU/Nn3kbqLccVyW1eVZ1Z4WAeu8JQBuaC0pR2MgHg41N10xn9TvbVD1a2/4dZanfwdgw4rsc+EfZdubv085LgkZ28GKTlNClzHjpJLmcvk5JBAF/IWdEhuE5oJQxQrQ5WWI0DRbavGtsNyRXlpOZQA+E+ARTioCeFsFFCZCGsohHd/GgPcM2HM39XUkFUXQ/8eFuuB7zDOaVnnuPQq1Wy1vrP0+g2KTXaX+f9eUcgMiYfu6Ac2CwgPc9yVxq/IalNk2CHOujeJUeQGKcxNy4Qq9bM4oQU=
