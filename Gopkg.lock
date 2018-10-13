@@ -84,14 +84,6 @@
   version = "v1.15.54"
 
 [[projects]]
-  digest = "1:2209584c0f7c9b68c23374e659357ab546e1b70eec2761f03280f69a8fd23d77"
-  name = "github.com/cenkalti/backoff"
-  packages = ["."]
-  pruneopts = "UT"
-  revision = "2ea60e5f094469f9e65adb9cd103795b73ae743e"
-  version = "v2.0.0"
-
-[[projects]]
   digest = "0:"
   name = "github.com/coreos/etcd"
   packages = [
@@ -395,7 +387,7 @@
     "secret",
   ]
   pruneopts = "UT"
-  revision = "a1d15d426b03b19df4430a536c708e77ff05a022"
+  revision = "11483ad8ad670bb21ed29ad817596011697e8c44"
 
 [[projects]]
   branch = "master"
@@ -420,17 +412,6 @@
   packages = ["."]
   pruneopts = "UT"
   revision = "628ac79ac6e3bc58c01dc06e9c2fd0220094ed32"
-
-[[projects]]
-  branch = "master"
-  digest = "0:"
-  name = "github.com/rai-project/database"
-  packages = [
-    ".",
-    "mongodb",
-  ]
-  pruneopts = "UT"
-  revision = "38879ae961d31e4353f407fbfd1523792c901446"
 
 [[projects]]
   branch = "master"
@@ -477,7 +458,7 @@
   name = "github.com/rai-project/model"
   packages = ["."]
   pruneopts = "UT"
-  revision = "737323c6a56e8fa42493291362e66b514e728d30"
+  revision = "83bd37bf6f01fbb9ad6b7b918833533950dc3f81"
 
 [[projects]]
   branch = "master"
@@ -809,14 +790,11 @@
 
 [[projects]]
   branch = "v2"
-  digest = "1:988de7520a09024d5d94cd99bd545afbf194893994ec759b1cda0a0bbb6adb80"
+  digest = "0:"
   name = "gopkg.in/mgo.v2"
   packages = [
-    ".",
     "bson",
     "internal/json",
-    "internal/sasl",
-    "internal/scram",
   ]
   pruneopts = "UT"
   revision = "9856a29383ce1c59f308dd1cf0363a79b5bef6b5"
@@ -828,18 +806,6 @@
   pruneopts = "UT"
   revision = "5420a8b6744d3b0345ab293f6fcba19c978f1183"
   version = "v2.2.1"
-
-[[projects]]
-  digest = "0:"
-  name = "upper.io/db.v3"
-  packages = [
-    ".",
-    "internal/immutable",
-    "mongo",
-  ]
-  pruneopts = "UT"
-  revision = "d2cc681b38f69e957b8aeaed84ac923be21b08d0"
-  version = "v3.5.5"
 
 [solve-meta]
   analyzer-name = "dep"
