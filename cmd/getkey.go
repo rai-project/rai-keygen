@@ -23,7 +23,7 @@ var getKeyCmd = &cobra.Command{
 			return err
 		}
 
-		if err := prof.GetByEmail(); err != nil {
+		if err := prof.FindByEmail(); err != nil {
 			return err
 		}
 
