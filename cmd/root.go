@@ -3,7 +3,6 @@ package cmd
 import (
 	"fmt"
 	"os"
-	"strings"
 
 	"github.com/fatih/color"
 	"github.com/pkg/errors"
@@ -18,16 +17,17 @@ import (
 )
 
 var (
-	username  string
-	email     string
-	firstname string
-	lastname  string
-	teamname  string
-	role      string
-	appSecret string
-	isColor   bool
-	isVerbose bool
-	isDebug   bool
+	username   string
+	email      string
+	firstname  string
+	lastname   string
+	teamname   string
+	roleString string
+	role       model.Role
+	appSecret  string
+	isColor    bool
+	isVerbose  bool
+	isDebug    bool
 )
 
 var RootCmd = &cobra.Command{
@@ -46,11 +46,12 @@ var RootCmd = &cobra.Command{
 		if email == "" {
 			return errors.New("empty email")
 		}
-		if role == "" {
+		if roleString == "" {
 			return errors.New("empty role")
 		}
-		if !isValidRole(role) {
-			return errors.Errorf("The role %s is not valid. Valid roles are %s", role, strings.Join(model.Roles, ", "))
+		role := model.Role(roleString)
+		if !role.Validate() {
+			return errors.Errorf("The role %s is not valid. Valid roles are %v", role, model.Roles)
 		}
 		return nil
 	},
@@ -99,7 +100,7 @@ func init() {
 	RootCmd.Flags().StringVarP(&firstname, "firstname", "f", "", "The firstname to generate the key for.")
 	RootCmd.Flags().StringVarP(&lastname, "lastname", "l", "", "The lastname to generate the key for.")
 	RootCmd.Flags().StringVarP(&teamname, "teamname", "t", "", "The team name associated with the key.")
-	RootCmd.Flags().StringVarP(&role, "role", "r", "", "The role of the user. e.g. power, student, guest, ...")
+	RootCmd.Flags().StringVarP(&roleString, "role", "r", "", "The role of the user. e.g. power, student, guest, ...")
 
 	RootCmd.PersistentFlags().StringVarP(&appSecret, "secret", "s", "", "The application secret key.")
 	RootCmd.PersistentFlags().BoolVarP(&isColor, "color", "c", !color.NoColor, "Toggle color output.")
