@@ -3,13 +3,16 @@ package cmd
 import (
 	"fmt"
 	"os"
+	"strings"
 
 	"github.com/fatih/color"
+	"github.com/pkg/errors"
 	"github.com/rai-project/auth"
 	"github.com/rai-project/auth/provider"
 	"github.com/rai-project/cmd"
 	"github.com/rai-project/config"
 	_ "github.com/rai-project/logger/hooks"
+	"github.com/rai-project/model"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 )
@@ -20,6 +23,7 @@ var (
 	firstname string
 	lastname  string
 	teamname  string
+	role      string
 	appSecret string
 	isColor   bool
 	isVerbose bool
@@ -35,13 +39,30 @@ var RootCmd = &cobra.Command{
 		"A seed (specified by `secret`) is used to generate secure credentials",
 	SilenceUsage:  true,
 	SilenceErrors: true,
+	PreRunE: func(cmd *cobra.Command, args []string) error {
+		if username == "" {
+			return errors.New("empty username")
+		}
+		if email == "" {
+			return errors.New("empty email")
+		}
+		if role == "" {
+			return errors.New("empty role")
+		}
+		if !isValidRole(role) {
+			return errors.Errorf("The role %s is not valid. Valid roles are %s", role, strings.Join(model.Roles, ", "))
+		}
+		return nil
+	},
 	RunE: func(cmd *cobra.Command, args []string) error {
 		prof, err := provider.New(
 			auth.Username(username),
 			auth.Email(email),
 			auth.Firstname(firstname),
 			auth.Lastname(lastname),
-			auth.TeamName(teamname))
+			auth.TeamName(teamname),
+			auth.Role(role),
+		)
 		if err != nil {
 			return err
 		}
@@ -59,8 +80,9 @@ var RootCmd = &cobra.Command{
 func Execute() {
 	if err := RootCmd.Execute(); err != nil {
 		fmt.Println(err)
-		os.Exit(-1)
+		os.Exit(1)
 	}
+	os.Exit(0)
 }
 
 func init() {
@@ -77,6 +99,7 @@ func init() {
 	RootCmd.Flags().StringVarP(&firstname, "firstname", "f", "", "The firstname to generate the key for.")
 	RootCmd.Flags().StringVarP(&lastname, "lastname", "l", "", "The lastname to generate the key for.")
 	RootCmd.Flags().StringVarP(&teamname, "teamname", "t", "", "The team name associated with the key.")
+	RootCmd.Flags().StringVarP(&role, "role", "r", "", "The role of the user. e.g. power, student, guest, ...")
 
 	RootCmd.PersistentFlags().StringVarP(&appSecret, "secret", "s", "", "The application secret key.")
 	RootCmd.PersistentFlags().BoolVarP(&isColor, "color", "c", !color.NoColor, "Toggle color output.")

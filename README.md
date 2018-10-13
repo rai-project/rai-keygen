@@ -2,11 +2,9 @@
 
 ## Generate Key
 
-
 Generates profiles to be used with the rai client
 
 ### Synopsis
-
 
 Generates a profile file that needs to be placed in `~/.rai_profile` (linux/OSX) or `%HOME%/.rai_profile` (Windows -- for me this is `C:\Users\abduld\.rai_profile`). The rai client reads these configuration files to authenticate the user. A seed (specified by `secret`) is used to generate secure credentials
 
@@ -20,6 +18,7 @@ rai-keygen
   -c, --color              Toggle color output.
   -d, --debug              Toggle debug mode.
   -e, --email string       The email to generate the key for.
+  -r, --role string        The role (or privaleges) of the user (student, power, etc...).
   -f, --firstname string   The firstname to generate the key for.
   -l, --lastname string    The lastname to generate the key for.
   -s, --secret string      The application secret key.
@@ -33,8 +32,7 @@ Creates keys for each person in a CSV file and emails the key to them.
 
 ### Synopsis
 
-
-Creates keys for each user in the students list and emails it to the them. The student list must be formated as a CSV file and be of the form `lastname, firstname, username, email, affiliation`. The config file must be configured with the propper mailing credentials.
+Creates keys for each user in the students list and emails it to the them. The student list must be formated as a CSV file and be of the form `lastname, firstname, username, email, role, affiliation`. The config file must be configured with the propper mailing credentials.
 
 ```
 rai-keygen emailkeys
