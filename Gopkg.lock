@@ -395,7 +395,7 @@
     "secret",
   ]
   pruneopts = "UT"
-  revision = "74f3ff3fd708661403fd50a986a48eac5b7a52c6"
+  revision = "66c465b05dfda59c0e7a47c57881e61b7b1439c3"
 
 [[projects]]
   branch = "master"
