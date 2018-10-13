@@ -445,7 +445,7 @@
   name = "github.com/rai-project/model"
   packages = ["."]
   pruneopts = "UT"
-  revision = "a336696dcef95572faf6476d7ecbfed2108239e4"
+  revision = "659dfc5df475225f0101081e09502275d40c440d"
 
 [[projects]]
   branch = "master"
@@ -816,6 +816,7 @@
     "github.com/rai-project/email/mailgun",
     "github.com/rai-project/logger",
     "github.com/rai-project/logger/hooks",
+    "github.com/rai-project/model",
     "github.com/sirupsen/logrus",
     "github.com/spf13/cobra",
     "github.com/spf13/viper",
