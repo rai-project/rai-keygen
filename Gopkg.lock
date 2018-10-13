@@ -395,7 +395,7 @@
     "secret",
   ]
   pruneopts = "UT"
-  revision = "5f56c4d0efdd1ea09f22763d3a9eb37283c55344"
+  revision = "a1d15d426b03b19df4430a536c708e77ff05a022"
 
 [[projects]]
   branch = "master"
@@ -477,7 +477,7 @@
   name = "github.com/rai-project/model"
   packages = ["."]
   pruneopts = "UT"
-  revision = "20a5cfd31fff1b55f3017ef0958e237646017c2d"
+  revision = "737323c6a56e8fa42493291362e66b514e728d30"
 
 [[projects]]
   branch = "master"
