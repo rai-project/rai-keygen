@@ -6,12 +6,12 @@ import (
 
 	"github.com/fatih/color"
 	"github.com/pkg/errors"
+	"github.com/rai-project/acl"
 	"github.com/rai-project/auth"
 	"github.com/rai-project/auth/provider"
 	"github.com/rai-project/cmd"
 	"github.com/rai-project/config"
 	_ "github.com/rai-project/logger/hooks"
-	"github.com/rai-project/model"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 )
@@ -23,7 +23,7 @@ var (
 	lastname   string
 	teamname   string
 	roleString string
-	role       model.Role
+	role       acl.Role
 	appSecret  string
 	isColor    bool
 	isVerbose  bool
@@ -49,9 +49,9 @@ var RootCmd = &cobra.Command{
 		if roleString == "" {
 			return errors.New("empty role")
 		}
-		role := model.Role(roleString)
+		role := acl.Role(roleString)
 		if !role.Validate() {
-			return errors.Errorf("The role %s is not valid. Valid roles are %v", role, model.Roles)
+			return errors.Errorf("The role %s is not valid. Valid roles are %v", role, acl.Roles)
 		}
 		return nil
 	},

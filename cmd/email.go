@@ -13,10 +13,10 @@ import (
 
 	"github.com/Unknwon/com"
 	"github.com/pkg/errors"
+	"github.com/rai-project/acl"
 	"github.com/rai-project/auth"
 	"github.com/rai-project/auth/provider"
 	"github.com/rai-project/email/mailgun"
-	"github.com/rai-project/model"
 	"github.com/spf13/cobra"
 )
 
@@ -90,7 +90,7 @@ var emailKeysCmd = &cobra.Command{
 				auth.Firstname(record[1]),
 				auth.Username(record[2]),
 				auth.Email(record[3]),
-				auth.Role(model.Role(record[4])),
+				auth.Role(acl.Role(record[4])),
 				auth.Affiliation(record[5]),
 				//auth.TeamName("your-teamname-here"),
 			)
