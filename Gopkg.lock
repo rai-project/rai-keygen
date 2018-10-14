@@ -130,6 +130,14 @@
   version = "v1.1.1"
 
 [[projects]]
+  digest = "0:"
+  name = "github.com/dustin/go-humanize"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "9f541cc9db5d55bce703bd99987c9d5cb8eea45e"
+  version = "v1.0.0"
+
+[[projects]]
   digest = "1:ad7ffa16c33f19ee2c17bce7ee865f5632cdc90d908aa313849900ecb3f722df"
   name = "github.com/evalphobia/logrus_fluent"
   packages = ["."]
@@ -378,6 +386,14 @@
 [[projects]]
   branch = "master"
   digest = "0:"
+  name = "github.com/rai-project/acl"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "923986ee52c5bc4602763a0adc9b574136787887"
+
+[[projects]]
+  branch = "master"
+  digest = "0:"
   name = "github.com/rai-project/auth"
   packages = [
     ".",
@@ -387,7 +403,7 @@
     "secret",
   ]
   pruneopts = "UT"
-  revision = "11483ad8ad670bb21ed29ad817596011697e8c44"
+  revision = "6b4116308e6c363fc560f1630dcbdef4c0a4870c"
 
 [[projects]]
   branch = "master"
@@ -458,7 +474,7 @@
   name = "github.com/rai-project/model"
   packages = ["."]
   pruneopts = "UT"
-  revision = "83bd37bf6f01fbb9ad6b7b918833533950dc3f81"
+  revision = "21eb33068eebfa9cb3dc6dc35ce1efb1363e9978"
 
 [[projects]]
   branch = "master"
@@ -485,7 +501,7 @@
   name = "github.com/rai-project/utils"
   packages = ["."]
   pruneopts = "UT"
-  revision = "ce3f0d62f06c39aef110fb693747dda95fcb631a"
+  revision = "6708a9c28d4e0c3c6bd19213f4920a16f43865d4"
 
 [[projects]]
   branch = "master"
@@ -815,6 +831,7 @@
     "github.com/Unknwon/com",
     "github.com/fatih/color",
     "github.com/pkg/errors",
+    "github.com/rai-project/acl",
     "github.com/rai-project/auth",
     "github.com/rai-project/auth/provider",
     "github.com/rai-project/cmd",
@@ -822,7 +839,6 @@
     "github.com/rai-project/email/mailgun",
     "github.com/rai-project/logger",
     "github.com/rai-project/logger/hooks",
-    "github.com/rai-project/model",
     "github.com/sirupsen/logrus",
     "github.com/spf13/cobra",
     "github.com/spf13/viper",
