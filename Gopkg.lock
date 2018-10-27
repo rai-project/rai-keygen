@@ -6,8 +6,8 @@
   name = "cloud.google.com/go"
   packages = ["compute/metadata"]
   pruneopts = "UT"
-  revision = "dfffe386c33fb24c34ee501e5723df5b97b98514"
-  version = "v0.30.0"
+  revision = "debcad1964693daf8ef4bc06292d7e828e075130"
+  version = "v0.31.0"
 
 [[projects]]
   branch = "master"
@@ -65,6 +65,7 @@
     "aws/request",
     "aws/session",
     "aws/signer/v4",
+    "internal/ini",
     "internal/sdkio",
     "internal/sdkrand",
     "internal/sdkuri",
@@ -80,8 +81,8 @@
     "service/sts",
   ]
   pruneopts = "UT"
-  revision = "bf8067ceb6e7f51e150c218972dccfeeed892b85"
-  version = "v1.15.54"
+  revision = "34ab03ee1a2b90b3baf97ff666397c8fb9b8714b"
+  version = "v1.15.64"
 
 [[projects]]
   digest = "0:"
@@ -195,14 +196,6 @@
 
 [[projects]]
   digest = "0:"
-  name = "github.com/go-ini/ini"
-  packages = ["."]
-  pruneopts = "UT"
-  revision = "7b294651033cd7d9e7f0d9ffa1b75ed1e198e737"
-  version = "v1.38.3"
-
-[[projects]]
-  digest = "0:"
   name = "github.com/go-playground/locales"
   packages = [
     ".",
@@ -296,7 +289,7 @@
   name = "github.com/knq/sdhook"
   packages = ["."]
   pruneopts = "UT"
-  revision = "65f48aa54165c608094aacc03485fb61fc6b61d8"
+  revision = "8b9f536cef4f4286cb1a9cf1dada024c106c9632"
 
 [[projects]]
   digest = "0:"
@@ -403,7 +396,7 @@
     "secret",
   ]
   pruneopts = "UT"
-  revision = "6b4116308e6c363fc560f1630dcbdef4c0a4870c"
+  revision = "f06ec209b357d87f7a7966622200ea7fae172257"
 
 [[projects]]
   branch = "master"
@@ -411,7 +404,7 @@
   name = "github.com/rai-project/aws"
   packages = ["."]
   pruneopts = "UT"
-  revision = "648d87fdbecb675bbf68c01b794861c987f6f847"
+  revision = "c2385f07f2959d2dce9c4ccfa3e087664387ab51"
 
 [[projects]]
   branch = "master"
@@ -474,7 +467,7 @@
   name = "github.com/rai-project/model"
   packages = ["."]
   pruneopts = "UT"
-  revision = "21eb33068eebfa9cb3dc6dc35ce1efb1363e9978"
+  revision = "ac2d1d1ff12d765797a4157f59c57c9c91a36ed0"
 
 [[projects]]
   branch = "master"
@@ -566,12 +559,12 @@
   version = "v1.1.2"
 
 [[projects]]
-  digest = "1:516e71bed754268937f57d4ecb190e01958452336fa73dbac880894164e91c1f"
+  digest = "0:"
   name = "github.com/spf13/cast"
   packages = ["."]
   pruneopts = "UT"
-  revision = "8965335b8c7107321228e3e3702cab9832751bac"
-  version = "v1.2.0"
+  revision = "8c9545af88b134710ab1cd196795e7f2388358d7"
+  version = "v1.3.0"
 
 [[projects]]
   branch = "master"
@@ -582,7 +575,7 @@
     "doc",
   ]
   pruneopts = "UT"
-  revision = "8d114be902bc9f08717804830a55c48378108a28"
+  revision = "fe5e611709b0c57fa4a89136deaa8e1d4004d053"
 
 [[projects]]
   branch = "master"
@@ -670,7 +663,7 @@
     "ssh/terminal",
   ]
   pruneopts = "UT"
-  revision = "a92615f3c49003920a58dedcf32cf55022cefb8d"
+  revision = "e84da0312774c21d64ee2317962ef669b27ffb41"
 
 [[projects]]
   branch = "master"
@@ -681,7 +674,7 @@
     "context/ctxhttp",
   ]
   pruneopts = "UT"
-  revision = "49bb7cea24b1df9410e1712aa6433dae904ff66a"
+  revision = "9b4f9f5ad5197c79fd623a3638e70d8b26cef344"
 
 [[projects]]
   branch = "master"
@@ -695,7 +688,7 @@
     "jwt",
   ]
   pruneopts = "UT"
-  revision = "c57b0facaced709681d9f90397429b9430a74754"
+  revision = "9dcd33a902f40452422c2367fefcb95b54f9f8f8"
 
 [[projects]]
   branch = "master"
@@ -707,7 +700,7 @@
     "windows",
   ]
   pruneopts = "UT"
-  revision = "fa43e7bc11baaae89f3f902b2b4d832b68234844"
+  revision = "95b1ffbd15a57cc5abb3f04402b9e8ec0016a52c"
 
 [[projects]]
   digest = "1:8029e9743749d4be5bc9f7d42ea1659471767860f0cdc34d37c3111bd308a295"
@@ -736,7 +729,7 @@
     "logging/v2",
   ]
   pruneopts = "UT"
-  revision = "72df7e5ac770e49326116145ee04771cf1913a73"
+  revision = "511bab8e55decfbe784cd2d1868fa5cda62dc6c1"
 
 [[projects]]
   digest = "0:"
@@ -777,8 +770,8 @@
   name = "gopkg.in/go-playground/validator.v9"
   packages = ["."]
   pruneopts = "UT"
-  revision = "e69e9a28bb62b977fdc58d051f1bb477b7cbe486"
-  version = "v9.21.0"
+  revision = "f8af4b15dbe132b53d3a53e7c3724271040e82e7"
+  version = "v9.21.1"
 
 [[projects]]
   digest = "1:174d05aec0155083f9b461f21a0a5c94f396c3cdb44f62445009ca05eef1372b"
