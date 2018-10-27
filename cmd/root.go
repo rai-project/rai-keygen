@@ -49,7 +49,7 @@ var RootCmd = &cobra.Command{
 		if roleString == "" {
 			return errors.New("empty role")
 		}
-		role := acl.Role(roleString)
+		role = acl.Role(roleString)
 		if !role.Validate() {
 			return errors.Errorf("The role %s is not valid. Valid roles are %v", role, acl.Roles)
 		}
