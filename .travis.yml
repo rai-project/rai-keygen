@@ -26,8 +26,6 @@ before_install:
   - cd ${TRAVIS_BUILD_DIR}
   - sed -i "s/\${APP_SECRET}/${APP_SECRET}/" ${TRAVIS_BUILD_DIR}/.goreleaser.yml
   - dep ensure -v
-  - rm -fr vendor/github.com/Sirupsen
-  - find vendor -type f -exec sed -i 's/Sirupsen/sirupsen/g' {} +
 script:
   - cd ${TRAVIS_BUILD_DIR}/cmd && go generate && cd ${TRAVIS_BUILD_DIR}
   - goreleaser --snapshot --skip-publish --skip-validate --rm-dist --debug
