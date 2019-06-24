@@ -53,6 +53,9 @@ var emailKeysCmd = &cobra.Command{
 		}
 
 		emailTemplate, err := template.New("email_template").Parse(string(emailTemplateFileBytes))
+    if err != nil { 
+			return errors.Wrap(err, "Failed to parse the email template file")
+    }
 
 		if !com.IsFile(studentListFileName) {
 			return errors.Errorf("cannot find the studen file list %v", studentListFileName)
