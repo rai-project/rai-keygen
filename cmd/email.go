@@ -75,6 +75,7 @@ var emailKeysCmd = &cobra.Command{
 			if err == io.EOF {
 				break
 			}
+			fmt.Printf("Processing: " + record[0] + ", " + record[1] + "\n")
 			if err != nil {
 				fmt.Printf("Error(%v):: cannot read record in the student file list.\n", err)
 				continue
